@@ -1,0 +1,4 @@
+window.dotify = {
+  components: {},
+  dataStore: {}
+}

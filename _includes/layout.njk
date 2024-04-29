@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="has-background-black" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dotify - Your.Music</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="/js/bulma.js"></script>
+  <script src="/js/dotify.js"></script>
+  <script src="/js/components/playlist-item.js"></script>
+  <script src="/js/components/playlist-list.js"></script>
+  <script src="/js/data-store.js"></script>
+  <script src="/js/weather_data.js"></script>
+  {% if script %}
+    <script src="{{ script }}"></script>
+  {% endif %}
+</head>
+
+<body>
+  {% include "nav.njk" %}
+  <main class="columns is-multiline box has-background-grey-darker is-centered is-vcentered">
+    {% include "header.njk" %}
+    {{ content | safe }}
+  </main>
+  {% include "footer.njk" %}
+</body>
+
+</html>
