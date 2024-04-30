@@ -1,8 +1,8 @@
 window.weatherReport.components.summaryCard = (city,dayOfTheWeek) => {
   const cityData = weatherReport.weatherData[city]
 
-  console.log(weatherReport.weatherCodes[cityData.daily.weather_code[0]])
-
+  // Move below to utility, getWeatherCodeData for example. I use it often enough
+  const weatherCodeData = weatherReport.weatherCodes[cityData.daily.weather_code[0]].day
 
   return `
      <div class="column is-4">
@@ -15,12 +15,12 @@ window.weatherReport.components.summaryCard = (city,dayOfTheWeek) => {
         </header>
         <div class="card-image">
           <!--        Gets weather code image from weather code object-->
-              <img src="${weatherReport.weatherCodes[cityData.daily.weather_code[0]].day.image}"/>
+              <img src="${weatherCodeData.image}"/>
         </div>
         <article class="card-content">
         <p class="content is-size-3">
 <!--        Gets weather code description from weather code object-->
-              ${weatherReport.weatherCodes[cityData.daily.weather_code[0]].day.description}
+              ${weatherCodeData.description}
         </p>
         <p class="content is-size-2">
             Low: ${cityData.daily.temperature_2m_min[0] + cityData.daily_units.apparent_temperature_min}
