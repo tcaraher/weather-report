@@ -15256,6 +15256,3 @@ window.weatherReport.weatherData = {
   }
 }
 
-list = () => {
-  return weatherData
-}

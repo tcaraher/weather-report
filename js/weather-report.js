@@ -1,4 +1,6 @@
 window.weatherReport = {
   components: {},
-  weatherData: {}
+  utilities: {},
+  weatherData: {},
+  weatherCodes: {}
 }

@@ -1,6 +1,9 @@
 window.weatherReport.components.summaryCard = (city,dayOfTheWeek) => {
   const cityData = weatherReport.weatherData[city]
 
+  console.log(weatherReport.weatherCodes[cityData.daily.weather_code[0]])
+
+
   return `
      <div class="column is-4">
       <section class="card has-text-centered">
@@ -11,12 +14,18 @@ window.weatherReport.components.summaryCard = (city,dayOfTheWeek) => {
           </p>
         </header>
         <div class="card-image">
+          <!--        Gets weather code image from weather code object-->
+              <img src="${weatherReport.weatherCodes[cityData.daily.weather_code[0]].day.image}"/>
         </div>
         <article class="card-content">
-        <p class="content is-size-4">
+        <p class="content is-size-3">
+<!--        Gets weather code description from weather code object-->
+              ${weatherReport.weatherCodes[cityData.daily.weather_code[0]].day.description}
+        </p>
+        <p class="content is-size-2">
             Low: ${cityData.daily.temperature_2m_min[0] + cityData.daily_units.apparent_temperature_min}
           </p>
-          <p class="content is-size-4">
+          <p class="content is-size-2">
             High: ${cityData.daily.temperature_2m_max[0] + cityData.daily_units.apparent_temperature_max}
           </p>
         </article>

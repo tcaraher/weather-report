@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main')
 
-  const todayHighLow = (city) => {
-    const cityData = weatherData[city]
+  const rightNowCard = (city) => {
+    const cityData = weatherReport.weatherData[city]
 
     return `
      <div class="column is-4">
@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
      }
 
   // Iterates over each key in the weather data key value pairs just for the daily weather
-  Object.keys(weatherData).forEach(city => {
+  Object.keys(weatherReport.weatherData).forEach(city => {
     if (city.includes("_daily")) {
-      main.innerHTML = main.innerHTML + todayHighLow(city)
+      main.innerHTML = main.innerHTML + rightNowCard(city)
     }
   });
 

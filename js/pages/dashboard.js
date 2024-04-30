@@ -8,8 +8,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-  // dotify.dataStore.list().forEach((playlist) => {
-  //   main.innerHTML = main.innerHTML + dotify.components.createPlaylistItem(playlist);
-  // });
 })
