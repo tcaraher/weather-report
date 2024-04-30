@@ -1,11 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main')
 
-  const rightNowCard = (city) => {
-    const now = dayjs()
-    const currentHour = now.hour()
-    const dailyData = weatherReport.weatherData[city + "_daily"]
-    const hourlyData = weatherReport.weatherData[city + "_hourly"]
+  const rightNowCard = (city,currentHour,dailyData,hourlyData) => {
 
     const indexOfCurrentHour = hourlyData.hourly.time.indexOf(`TodayT${currentHour}:00`);
 
@@ -41,9 +37,35 @@ document.addEventListener('DOMContentLoaded', () => {
     `
   }
 
-  main.innerHTML = main.innerHTML + rightNowCard("amsterdam")
 
-  // dotify.dataStore.list().forEach((playlist) => {
-  //   main.innerHTML = main.innerHTML + dotify.components.createPlaylistItem(playlist);
-  // });
+
+
+  const cityFocus = (city) => {
+    const now = dayjs()
+    const currentHour = now.hour()
+    const dailyData = weatherReport.weatherData[city + "_daily"]
+    const hourlyData = weatherReport.weatherData[city + "_hourly"]
+
+    return `
+    <h1 class="title has-text-white">
+    <body class="container flex">
+    ${city.toUpperCase()}
+    </h1>
+    ${rightNowCard(city,currentHour,dailyData,hourlyData)}
+    <h2 class="has-text-white is-size-3" >
+    Max Temperature: ${dailyData.daily.wind_speed_10m_max[0] + ' km/h'}
+    </h2>
+        <h2 class="has-text-white is-size-3" >
+    Max Wind Speed: ${dailyData.daily.wind_speed_10m_max[0] + ' °C'}
+    </h2>
+    ${
+      e
+    }
+  </body>
+    `
+
+  }
+
+  main.innerHTML = main.innerHTML + cityFocus("amsterdam")
+
 })

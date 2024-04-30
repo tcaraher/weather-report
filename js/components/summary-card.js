@@ -1,10 +1,12 @@
 window.weatherReport.components.summaryCard = (city,dayOfTheWeek) => {
+
+  // handle different daily/hourly strings. I only need the daily data here, so filtering out anything except _daily
   const cityData = weatherReport.weatherData[city]
 
   // Move below to utility, getWeatherCodeData for example. I use it often enough
   const weatherCodeData = weatherReport.weatherCodes[cityData.daily.weather_code[0]].day
 
-  return `
+  return `e
      <div class="column is-4">
       <section class="card has-text-centered">
         <header class="card-header">
