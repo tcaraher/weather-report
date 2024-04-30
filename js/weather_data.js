@@ -15255,3 +15255,7 @@ const weatherData = {
     }
   }
 }
+
+list = () => {
+  return weatherData
+}

@@ -10,16 +10,12 @@
       </span>
     </div>
     <div id="navbarMenu" class="navbar-menu">
+      {% set navPages = collections.all | eleventyNavigation %}
       <div class="navbar-end has-background-black">
-        <a href="/" class="navbar-item has-text-white">
-          Home
-        </a>
-        <a class="navbar-item has-text-white">
-          Dashboard
-        </a>
-        <a class="navbar-item has-text-white">
-          Settings
-        </a>
+        {%- for entry in navPages %}
+        <a {% if entry.url == page.url %} class="active navbar-item" {% endif %} class="navbar-item has-text-white"
+                                                                     href="{{ entry.url | url }}">{{ entry.title }}</a>
+        {%- endfor %}
       </div>
     </div>
   </nav>

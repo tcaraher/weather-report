@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </article>
       </section>
     `
-     }
+  }
 
   // Iterates over each key in the weather data key value pairs just for the daily weather
   Object.keys(weatherData).forEach(city => {
