@@ -1,4 +1,4 @@
-const weatherData = {
+window.weatherReport.weatherData = {
   "amsterdam_daily": {
     "latitude": 52.36,
     "longitude": 4.82,
