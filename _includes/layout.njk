@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dotify - Your.Music</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
+  >
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
   <script src="/js/bulma.js"></script>
   <script src="/js/dotify.js"></script>
@@ -24,7 +27,7 @@
 
 <body>
   {% include "nav.njk" %}
-  <main class="columns is-multiline box has-background-grey-darker is-centered is-vcentered">
+  <main class="is-multiline box has-background-grey-darker is-centered is-vcentered">
     {% include "header.njk" %}
     {{ content | safe }}
   </main>

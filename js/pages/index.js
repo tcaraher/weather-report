@@ -2,10 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main')
 
   const rightNowCard = (city,currentHour,dailyData,hourlyData) => {
-
-    const indexOfCurrentHour = hourlyData.hourly.time.indexOf(`TodayT${currentHour}:00`);
-
-    const weatherCodeData = weatherReport.weatherCodes[hourlyData.hourly.weather_code[indexOfCurrentHour]].day
+    // below call was originally in John's tutorial. Why? TODO take out?
+    // const indexOfCurrentHour = hourlyData.hourly.time.indexOf(`TodayT${currentHour}:00`);
+    const weatherCodeData = weatherReport.weatherCodes[hourlyData.hourly.weather_code[currentHour]].day
 
     return `
      <div class="column is-4">
@@ -27,45 +26,60 @@ document.addEventListener('DOMContentLoaded', () => {
               ${weatherCodeData.description}
         </p>
         <p class="content is-size-4">
-            Temperature: ${hourlyData.hourly.temperature_2m[indexOfCurrentHour] + dailyData.daily_units.apparent_temperature_min}
+            Temperature: ${hourlyData.hourly.temperature_2m[currentHour] + dailyData.daily_units.apparent_temperature_min}
           </p>
           <p class="content is-size-4">
-            Wind Speed: ${hourlyData.hourly.temperature_2m[indexOfCurrentHour] + ' km/h'}
+            Wind Speed: ${hourlyData.hourly.temperature_2m[currentHour] + ' km/h'}
           </p>
         </article>
       </section>
+      </div>
     `
   }
 
+  const getDaysOfWeekSummaries = (city,currentDay,daysOfTheWeek) => {
+    let cardContainer = ""
+    // Passes in day index for weather data into the card component, along with the day of the week itself from array
+    for (let dayIndex = 0; dayIndex < daysOfTheWeek.length; dayIndex ++){
+      let currentDayModDaysOfWeek = (dayIndex+currentDay)%daysOfTheWeek.length
+      cardContainer += weatherReport.components.daySummaryCard(city, dayIndex, daysOfTheWeek[currentDayModDaysOfWeek])
+  }
+    return cardContainer
+  }
 
-
-
-  const cityFocus = (city) => {
+  const cityFocus = () => {
+    const city = "amsterdam"
     const now = dayjs()
     const currentHour = now.hour()
+    const currentDay = now.day()
     const dailyData = weatherReport.weatherData[city + "_daily"]
     const hourlyData = weatherReport.weatherData[city + "_hourly"]
+    const daysOfTheWeek = ["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"]
 
+    console.log(currentDay)
     return `
-    <h1 class="title has-text-white">
-    <body class="container flex">
+    <h1 class="title is-size-1 has-text-white has-text-centered">
     ${city.toUpperCase()}
     </h1>
-    ${rightNowCard(city,currentHour,dailyData,hourlyData)}
-    <h2 class="has-text-white is-size-3" >
+    <section class="columns mx-6 is-vcentered">
+<div class="column has-text-justified">   
+ <h2 class="has-text-white is-size-3 " >
     Max Temperature: ${dailyData.daily.wind_speed_10m_max[0] + ' km/h'}
     </h2>
         <h2 class="has-text-white is-size-3" >
     Max Wind Speed: ${dailyData.daily.wind_speed_10m_max[0] + ' °C'}
     </h2>
-    ${
-      e
-    }
-  </body>
+    </div>
+    
+    ${rightNowCard(city, currentHour, dailyData, hourlyData)}
+    </section>
+    <div class="columns">
+    ${getDaysOfWeekSummaries(city, currentDay, daysOfTheWeek)}
+    </div>
+<!--    </div>-->
     `
-
   }
 
-  main.innerHTML = main.innerHTML + cityFocus("amsterdam")
+  main.innerHTML = main.innerHTML + cityFocus()
 
 })
