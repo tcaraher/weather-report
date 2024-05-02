@@ -4,7 +4,7 @@
 // Needs to be key value format with daily and or hourly key, then the title of each field to be displayed along with its relevant field name
 window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle) => {
   const city = Object.keys(dataFields)[0]
-
+  // const seeMoreLink = cardTitle
   let weatherCodeData
   let dataType
   let query
@@ -37,7 +37,9 @@ window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle
           <p class="card-header-title is-size-4 is-centered">
             ${cardTitle.replace('_', ' ').toUpperCase()}
           </p>
+
         </header>
+          <a class="button" href="/?city=${city}">See More!</a>
         <div class="card-image">
           <!--        Gets weather code image from weather code object-->
               <img src="${dataFields[city].daily ? weatherCodeData.image : weatherCodeData.image}"/>
