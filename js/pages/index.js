@@ -37,12 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
     `
   }
 
-  const getDaysOfWeekSummaries = (city,currentDay,daysOfTheWeek) => {
-    let cardContainer = ""
+  const getDaysOfWeekDailySummaries = (city,currentDay,daysOfTheWeek) => {
+    const dataFields = {[city]: {"daily": {"Low": "temperature_2m_min", "High": "temperature_2m_max"}}}
+    let cardContainer
+      = ""
     // Passes in day index for weather data into the card component, along with the day of the week itself from array
-    for (let dayIndex = 0; dayIndex < daysOfTheWeek.length; dayIndex ++){
-      let currentDayModDaysOfWeek = (dayIndex+currentDay)%daysOfTheWeek.length
-      cardContainer += weatherReport.components.daySummaryCard(city, dayIndex, daysOfTheWeek[currentDayModDaysOfWeek])
+    for (let dayOfTheWeekIndex = 0; dayOfTheWeekIndex < daysOfTheWeek.length; dayOfTheWeekIndex ++){
+      let currentDayModDaysOfWeek = (dayOfTheWeekIndex+currentDay)%daysOfTheWeek.length
+      let dayOfTheWeek
+      if (dayOfTheWeekIndex === 0) {
+        dayOfTheWeek = "Today"
+      } else {
+        dayOfTheWeek = daysOfTheWeek[currentDayModDaysOfWeek]
+      }
+      cardContainer += weatherReport.components.weatherCard(dataFields,dayOfTheWeekIndex,dayOfTheWeek)
   }
     return cardContainer
   }
@@ -56,17 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const hourlyData = weatherReport.weatherData[city + "_hourly"]
     const daysOfTheWeek = ["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"]
 
-    console.log(currentDay)
     return `
     <h1 class="title is-size-1 has-text-white has-text-centered">
     ${city.toUpperCase()}
     </h1>
     <section class="columns mx-6 is-vcentered">
-<div class="column has-text-justified">   
- <h2 class="has-text-white is-size-3 " >
+    <div class="column has-text-justified">   
+    <h2 class="has-text-white is-size-4 " >
     Max Temperature: ${dailyData.daily.wind_speed_10m_max[0] + ' km/h'}
     </h2>
-        <h2 class="has-text-white is-size-3" >
+    <h2 class="has-text-white is-size-4" >
     Max Wind Speed: ${dailyData.daily.wind_speed_10m_max[0] + ' °C'}
     </h2>
     </div>
@@ -74,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ${rightNowCard(city, currentHour, dailyData, hourlyData)}
     </section>
     <div class="columns">
-    ${getDaysOfWeekSummaries(city, currentDay, daysOfTheWeek)}
+    ${getDaysOfWeekDailySummaries(city, currentDay, daysOfTheWeek)}
     </div>
 <!--    </div>-->
     `

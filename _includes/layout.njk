@@ -17,6 +17,7 @@
   <script src="/js/components/playlist-item.js"></script>
   <script src="/js/components/playlist-list.js"></script>
   <script src="/js/components/summary-card.js"></script>
+  <script src="/js/components/weather-card.js"></script>
   <script src="/js/data-store.js"></script>
   <script src="/js/weather_data.js"></script>
   <script src="/js/weather-codes.js"></script>
@@ -27,7 +28,7 @@
 
 <body>
   {% include "nav.njk" %}
-  <main class="is-multiline box has-background-grey-darker is-centered is-vcentered">
+  <main class="is-multiline p-5 has-background-grey-darker is-centered is-vcentered">
     {% include "header.njk" %}
     {{ content | safe }}
   </main>
