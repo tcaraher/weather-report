@@ -14,12 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         dayOfTheWeek = daysOfTheWeek[currentDayModDaysOfWeek]
       }
-      cardContainer += weatherReport.components.weatherCard(weekCardData, dayOfTheWeekIndex, dayOfTheWeek)
+      // hold the city and day(without the 'today' condition, so the actual weekday, to be passed in to the weathercard
+      const cardLinkTo = `/hourly-view/?city=${city}&day=${daysOfTheWeek[currentDayModDaysOfWeek]}`
+      cardContainer += weatherReport.components.weatherCard(weekCardData, dayOfTheWeekIndex, dayOfTheWeek, cardLinkTo)
     }
     return cardContainer
   }
 
-  const todaysWeatherTable = (city, dailyData) => {
+  const todaysWeather = (city, dailyData) => {
     let todaysTable = `
     <p class="has-text-white is-size-6" >
     Max Temperature: ${dailyData.daily.temperature_2m_max[0] + ' °C'}
@@ -47,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     // sets the city to default unless has a parameter set. Won't work long term
     const city = urlParams.has("city") ? urlParams.get("city") : "amsterdam"
-    console.log(city)
     const now = dayjs()
     const currentHour = now.hour()
     const currentDay = now.day()
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // below call was originally in John's tutorial. Why? TODO take out?
     // const indexOfCurrentHour = hourlyData.hourly.time.indexOf(`TodayT${currentHour}:00`);
 
-    const daysOfTheWeek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+    const daysOfTheWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
     const rightNowData = { [city]: { 'hourly': { 'Current Temperature': 'temperature_2m', 'Wind Speed': 'wind_speed_10m' } } }
     // const todaysTableData = {'Min Temp: ' : 'temperature_2m_min','Max Temp:' : 'temperature_2m_max',  : }
     return `
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <h2 class="has-text-white is-size-3"> 
     Daily Summary 
     </h2>
-    ${todaysWeatherTable(city,dailyData)}
+    ${todaysWeather(city,dailyData)}
     </div>
     ${window.weatherReport.components.weatherCard(rightNowData, currentHour, 'Right Now!')}
     </section>
