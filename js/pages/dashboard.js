@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         }
-        const cardLinkTo = `/?city=${city}`
+        const cardLinkTo = `/city-view/?city=${city}`
         cards += weatherReport.components.weatherCard(dashboardCardData, 0, city, cardLinkTo)
       }
     })
