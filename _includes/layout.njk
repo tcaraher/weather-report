@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html class="has-background-black" lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dotify - Your.Music</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
-  <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
-  >
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-  <script src="/js/bulma.js"></script>
-  <script src="/js/dotify.js"></script>
-  <script src="/js/weather-report.js"></script>
-  <script src="/js/components/playlist-item.js"></script>
-  <script src="/js/components/playlist-list.js"></script>
-  <script src="/js/components/weather-card.js"></script>
-  <script src="/js/data-store.js"></script>
-  <script src="/js/weather_data.js"></script>
-  <script src="/js/weather-codes.js"></script>
-  {% if script %}
-    <script src="{{ script }}"></script>
-  {% endif %}
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Weather Report</title>
+{#        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />#}
+        <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
+        >
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+        <script src="/js/bulma.js"></script>
+        <script src="/js/weather-report.js"></script>
+        <script src="/js/components/weather-card.js"></script>
+        <script src="/js/weather_data.js"></script>
+        <script src="/js/weather-codes.js"></script>
+        {% if script %}
+            <script src="{{ script }}"></script>
+        {% endif %}
+    </head>
 
-<body>
-  {% include "nav.njk" %}
-  <main class="is-multiline p-5 has-background-grey-darker is-centered is-vcentered">
-    {% include "header.njk" %}
-    {{ content | safe }}
-  </main>
-  {% include "footer.njk" %}
-</body>
+    <body>
+        {% include "nav.njk" %}
+        <main class="is-multiline p-5 has-background-grey-darker is-centered is-vcentered">
+            {% include "header.njk" %}
+            {{ content | safe }}
+        </main>
+        {% include "footer.njk" %}
+    </body>
 
 </html>
