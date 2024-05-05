@@ -1,4 +1,4 @@
-import cityFocus from "/js/pages/city-view";
+import cityFocus from "/js/pages/city-focus";
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.querySelector("main");
 

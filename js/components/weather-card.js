@@ -37,7 +37,6 @@ window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle
           <p class="card-header-title is-size-4 is-centered">
             ${cardTitle.replace('_', ' ').toUpperCase()}
           </p>
-
         </header>
           ${Link ? `<a class="button" href=${Link}>See More!</a>` : ''}
         <div class="card-image">
