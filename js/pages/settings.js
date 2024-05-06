@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const storageTemperatureKey = weatherReport.constants.storageTemperatureKey;
   const storageSpeedKey = weatherReport.constants.storageSpeedKey;
-  console.log(storageSpeedKey)
+  console.log(storageSpeedKey);
   let speedUnit;
   if (localStorage.getItem(storageSpeedKey) === null) {
     speedUnit = 'Set Default Speed Unit';
@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     tempUnit = localStorage.getItem(storageTemperatureKey);
   }
-
 
   const Settings = () => {
     return `
@@ -56,9 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </header>
         ${weatherReport.components.cityPicker()}
  
-        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageTemperatureKey,["celsius","fahrenheit"])}
+        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageTemperatureKey, ['celsius', 'fahrenheit'])}
            
-        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageSpeedKey,["km/h","mph"])}
+        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageSpeedKey, ['km/h', 'mph'])}
     </div>
 
     </section>
@@ -70,10 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Calls dom events for returned html of city picker component
   weatherReport.components.cityPickerEvents();
 
-  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageSpeedKey)
-  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageTemperatureKey)
+  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageSpeedKey);
+  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageTemperatureKey);
 
-  weatherReport.components.handleDropdowns()
+  weatherReport.components.handleDropdowns();
 
   let favouritesObj = weatherReport.utilities.getFaveObjFromStorage();
 

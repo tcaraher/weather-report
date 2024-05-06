@@ -12,12 +12,12 @@ window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle
   // if data query needs to be hourly or daily data (this function only supports one type)
   if (dataFields[city].daily) {
     dataType = 'daily';
-    cityNameForData = city + `_${dataType}`
+    cityNameForData = city + `_${dataType}`;
     query = weatherReport.weatherData[cityNameForData][dataType];
     weatherCodeData = weatherReport.weatherCodes[query.weather_code[fieldIndex]].day;
   } else if (dataFields[city].hourly) {
     dataType = 'hourly';
-    cityNameForData = city + `_${dataType}`
+    cityNameForData = city + `_${dataType}`;
     query = weatherReport.weatherData[cityNameForData][dataType];
     // console.log(weatherReport.weatherCodes[query.weather_code[fieldIndex]])
     weatherCodeData = weatherReport.weatherCodes[query.weather_code[fieldIndex]].day;
@@ -27,7 +27,7 @@ window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle
     let dataElement = '';
     Object.entries(dataFields[city][dataType]).forEach(([key, value]) => {
       dataElement += `
-        <p class="content">${key + ': ' + weatherReport.utilities.getValue(cityNameForData,query[value][fieldIndex],value)} </p>
+        <p class="content">${key + ': ' + weatherReport.utilities.getValue(cityNameForData, query[value][fieldIndex], value)} </p>
         `;
     });
     return dataElement;

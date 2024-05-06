@@ -3,5 +3,5 @@ window.weatherReport = {
   utilities: {},
   constants: {},
   weatherData: {},
-  weatherCodes: {}
-}
+  weatherCodes: {},
+};

@@ -53,7 +53,7 @@ window.weatherReport.components.cityPickerEvents = (returnURL) => {
       document.querySelector('#selected-city').innerHTML = weatherReport.utilities.cityStripper(cityName);
       // sends user to the new default city if true is passed into function call. Used on home screen/city focus page to refresh page after default city update, not on settings page
       if (returnURL) {
-        document.getElementById(`city-selection-${cityName}`).setAttribute("href", `/city-focus/?city=${cityName}`)
+        document.getElementById(`city-selection-${cityName}`).setAttribute('href', `/city-focus/?city=${cityName}`);
       }
     });
   });
@@ -62,9 +62,9 @@ window.weatherReport.components.cityPickerEvents = (returnURL) => {
 // Dropdown component for general settings (not default city with list).
 // Takes a settings type (in this case either temp or wind) and the options in an array
 window.weatherReport.components.settingDropdowns = (localStorageKey, settingsOptions) => {
-  const settingType = localStorageKey.includes("temp") ? "temp" : "speed"
-  const settingTypeFriendly = settingType.includes("temp") ? "Temperature" : "Wind Speed"
-  let settingsValueFromStorage
+  const settingType = localStorageKey.includes('temp') ? 'temp' : 'speed';
+  const settingTypeFriendly = settingType.includes('temp') ? 'Temperature' : 'Wind Speed';
+  let settingsValueFromStorage;
   if (localStorage.getItem(localStorageKey) === null) {
     settingsValueFromStorage = `Set Default ${settingTypeFriendly} Unit`;
   } else {
@@ -91,29 +91,29 @@ window.weatherReport.components.settingDropdowns = (localStorageKey, settingsOpt
             </div>
           </div> 
           </div>   
-  `
-}
+  `;
+};
 
 window.weatherReport.components.dropdownSelectionEvents = (localStorageKey) => {
-  const settingType = localStorageKey.includes("temp") ? "temp" : "speed"
+  const settingType = localStorageKey.includes('temp') ? 'temp' : 'speed';
   document.querySelectorAll(`[id^=${settingType}-selection]`).forEach((selection) => {
     selection.addEventListener('click', (event) => {
       const value = selection.innerHTML;
       localStorage.setItem(localStorageKey, value.toLowerCase());
-      document.querySelector(`#selected-unit-${settingType}`).innerHTML = localStorage.getItem(localStorageKey).toUpperCase()
+      document.querySelector(`#selected-unit-${settingType}`).innerHTML = localStorage.getItem(localStorageKey).toUpperCase();
     });
   });
-}
+};
 
 window.weatherReport.components.handleDropdowns = () => {
   // toggle dropdowns
-  document.querySelectorAll('.dropdown').forEach( dropdown =>
+  document.querySelectorAll('.dropdown').forEach((dropdown) =>
     dropdown.addEventListener('click', (event) => {
       dropdown.classList.toggle('is-active');
-    }));
+    }),
+  );
 
   // document.addEventListener('click', e => {
   //   if (!element.contains(e.target)) callback();
   // });
-}
-
+};
