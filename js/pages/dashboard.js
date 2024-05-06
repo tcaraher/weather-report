@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
           },
         };
-        const cardLinkTo = `/city-view/?city=${city}`;
+        const cardLinkTo = `/city-focus/?city=${city}`;
 
         // reads local storage to check if the city is a fave
         isFave = readFaves[city];

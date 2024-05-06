@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
           dayOfTheWeek = daysOfTheWeek[currentDayModDaysOfWeek];
         }
         // hold the city and day(without the 'today' condition, so the actual weekday, to be passed in to the weathercard
-        const cardLinkTo = `/hourly-view/?city=${city}&day=${daysOfTheWeek[currentDayModDaysOfWeek]}`;
+        const cardLinkTo = `/hourly-focus/?city=${city}&day=${daysOfTheWeek[currentDayModDaysOfWeek]}`;
         cardContainer += weatherReport.components.weatherCard(
           weekCardData,
           dayOfTheWeekIndex,
@@ -34,24 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       return cardContainer;
     };
-    const todaysWeather = (city, dailyData) => {
-      let todaysTable = `
-      <p class="has-text-white is-size-6">
-        Max Temperature: ${dailyData.daily.temperature_2m_max[0] + " °C"}
-      </p>
-      <p class="has-text-white is-size-6">
-        Min Temperature: ${dailyData.daily.temperature_2m_min[0] + " °C"}
-      </p>
-      <p class="has-text-white is-size-6">
-        Chance of Rain: ${dailyData.daily.precipitation_probability_max[0] + "%"}
-      </p>
-      <p class="has-text-white is-size-6">
-        Max Wind Speed: ${dailyData.daily.wind_speed_10m_max[0] + " km/h"}
-      </p>
-`;
-      return todaysTable;
-    };
-
 
     let homeCity;
     if (localStorage.getItem('default-city') === null) {
@@ -85,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       },
     };
-    // const todaysTableData = {'Min Temp: ' : 'temperature_2m_min','Max Temp:' : 'temperature_2m_max',  : }
     return `
     <section class="columns mx-6 is-vcentered">
       <h1 class="column title is-size-1 has-text-white has-text-centered">
@@ -121,8 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="columns">
       ${getDaysOfWeekDailySummaries(city, currentDay, daysOfTheWeek)}
     </div>
+    ${weatherReport.components.cityPicker()}
     `;
   };
 
   main.innerHTML = main.innerHTML + cityFocus();
+
+
+  weatherReport.components.cityPickerEvents(true)
+
+
 });
