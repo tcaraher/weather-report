@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="has-background-black" lang="en">
+<html class="" lang="en">
 
     <head>
         <meta charset="utf-8" />
@@ -16,6 +16,8 @@
         <script src="/js/weather-report.js"></script>
         <script src="/js/components/weather-card.js"></script>
         <script src="/js/components/city-picker.js"></script>
+        <script src="/js/utilities.js"></script>
+        <script src="/js/constants.js"></script>
         <script src="/js/weather_data.js"></script>
         <script src="/js/weather-codes.js"></script>
         {% if script %}
@@ -25,7 +27,7 @@
 
     <body>
         {% include "nav.njk" %}
-        <main class="is-multiline p-5 has-background-grey-darker is-centered is-vcentered">
+        <main class="is-multiline p-5 is-centered is-vcentered">
             {% include "header.njk" %}
             {{ content | safe }}
         </main>

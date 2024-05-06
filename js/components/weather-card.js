@@ -6,16 +6,19 @@ window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle
   const city = Object.keys(dataFields)[0];
   let weatherCodeData;
   let dataType;
+  let cityNameForData;
   let query;
 
   // if data query needs to be hourly or daily data (this function only supports one type)
   if (dataFields[city].daily) {
     dataType = 'daily';
-    query = weatherReport.weatherData[city + `_${dataType}`][dataType];
+    cityNameForData = city + `_${dataType}`
+    query = weatherReport.weatherData[cityNameForData][dataType];
     weatherCodeData = weatherReport.weatherCodes[query.weather_code[fieldIndex]].day;
   } else if (dataFields[city].hourly) {
     dataType = 'hourly';
-    query = weatherReport.weatherData[city + `_${dataType}`][dataType];
+    cityNameForData = city + `_${dataType}`
+    query = weatherReport.weatherData[cityNameForData][dataType];
     // console.log(weatherReport.weatherCodes[query.weather_code[fieldIndex]])
     weatherCodeData = weatherReport.weatherCodes[query.weather_code[fieldIndex]].day;
   }
@@ -24,7 +27,7 @@ window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle
     let dataElement = '';
     Object.entries(dataFields[city][dataType]).forEach(([key, value]) => {
       dataElement += `
-        <p class="content">${key + ': ' + query[value][fieldIndex]}</p>
+        <p class="content">${key + ': ' + weatherReport.utilities.getValue(cityNameForData,query[value][fieldIndex],value)} </p>
         `;
     });
     return dataElement;
@@ -32,25 +35,25 @@ window.weatherReport.components.weatherCard = (dataFields, fieldIndex, cardTitle
 
   return `
      <div class="column">
-      <section class="card has-text-centered">
-        <header class="card-header">
-          <p class="card-header-title is-size-4 is-centered">
-            ${cardTitle.replace('_', ' ').toUpperCase()}
-          </p>
-        </header>
-          ${Link ? `<a class="button" href=${Link}>See More!</a>` : ''}
-        <div class="card-image">
-          <!--        Gets weather code image from weather code object-->
-              <img src="${dataFields[city].daily ? weatherCodeData.image : weatherCodeData.image}"/>
-        </div>
-        <article class="card-content">
-        <p class="content">
-<!--        Gets weather code description from weather code object-->
-              ${dataFields[city].daily ? weatherCodeData.description : weatherCodeData.description}
-        </p>
-        ${drawDataFields(dataFields)}
-        </article>
-      </section>
-      </div>
+       <section class="card has-text-centered">
+         <header class="card-header">
+           <p class="card-header-title is-size-4 is-centered">
+             ${weatherReport.utilities.cityStripper(cardTitle)}
+           </p>
+         </header>
+         ${Link ? `<a class="button mt-4" href=${Link}>See More!</a>` : ''}
+         <div class="card-image">
+           <!--        Gets weather code image from weather code object-->
+           <img src="${dataFields[city].daily ? weatherCodeData.image : weatherCodeData.image}" />
+         </div>
+         <article class="card-content">
+           <p class="content">
+             <!--        Gets weather code description from weather code object-->
+             ${dataFields[city].daily ? weatherCodeData.description : weatherCodeData.description}
+           </p>
+           ${drawDataFields(dataFields)}
+         </article>
+       </section>
+     </div>
     `;
 };

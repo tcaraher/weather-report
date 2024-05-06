@@ -69,10 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     return `
-    <h1 class="column title is-size-1 has-text-white has-text-centered">
+    <h1 class="column title is-size-1 has-text-centered">
       ${city.replace("_", " ").toUpperCase()} | ${dayOfTheWeekFromURL.toUpperCase()}
     </h1>
-    <h2 class="has-text-white is-size-1 has-text-centered">
+    <h2 class=" is-size-1 has-text-centered">
       Hourly Summary
     </h2>
     <section class="grid m-6 is-vcentered">

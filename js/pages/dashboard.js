@@ -1,14 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
   console.log(localStorage.getItem('favourites'));
-  // setting value of the read favourits object to an empty object if the parse/localStorage returns null
-  // TODO turn into utility
-  let readFaves;
-  if (localStorage.getItem('favourites') === null) {
-    readFaves = {};
-  } else {
-    readFaves = JSON.parse(localStorage.getItem('favourites'));
-  }
+
+  const readFaves = weatherReport.utilities.getFaveObjFromStorage();
   const hasFaves = Object.values(readFaves).includes(true);
 
   // Iterates over each key in the weather data key value pairs just for the daily weather (I don't need it to do it twice for each city) Then takes _daily out so i'm just left with the city name
@@ -46,15 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const Dashboard = () => {
     return `
     <p class='title is-size-2 has-text-centered'>
-    ${!hasFaves ? '' : 'Favourite Cities'}
+      ${!hasFaves ? '' : 'Favourite Cities'}
     </p>
     <div class="grid is-col-min-11">
-    ${cityCards(true)}
+      ${cityCards(true)}
     </div>
     <p class='title is-size-2 has-text-centered'>${!hasFaves ? 'Cities' : 'Other Cities'}</p>
-    <p class='has-text-centered'> ${!hasFaves ? `Set your favourite cities in <a href='/settings/'>settings!</a>` : ''}</p>
+    <p class='has-text-centered'> ${!hasFaves ? `Set your favourite cities in <a href='/settings/'>settings!</a>` : ''}
+    </p>
     <div class="grid is-col-min-11">
-    ${cityCards(false)}
+      ${cityCards(false)}
     </div>
     `;
   };

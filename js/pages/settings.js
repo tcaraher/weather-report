@@ -20,41 +20,63 @@ document.addEventListener('DOMContentLoaded', () => {
     return cityListItem;
   };
 
+  const storageTemperatureKey = weatherReport.constants.storageTemperatureKey;
+  const storageSpeedKey = weatherReport.constants.storageSpeedKey;
+  console.log(storageSpeedKey)
+  let speedUnit;
+  if (localStorage.getItem(storageSpeedKey) === null) {
+    speedUnit = 'Set Default Speed Unit';
+  } else {
+    speedUnit = localStorage.getItem(storageSpeedKey);
+  }
+
+  let tempUnit;
+  if (localStorage.getItem(storageTemperatureKey) === null) {
+    tempUnit = 'Set Default Speed Unit';
+  } else {
+    tempUnit = localStorage.getItem(storageTemperatureKey);
+  }
 
 
   const Settings = () => {
     return `
     <h1 class='title is-size-1 has-text-centered'>
-    Settings
+      Settings
     </h1>
-    <div class='grid'>    
-        <section class="cell mx-6 card">
-        <header class="card-header"><p class="card-header-title is-size-4 is-centered">Favourite Cities</p></header>
+    <div class='grid'>
+      <section class='cell mx-6 card'>
+        <header class='card-header'>
+          <p class='card-header-title is-size-4 is-centered'>Favourite Cities</p>
+        </header>
         ${cityList()}
-        </section>
-        <section class="cell mx-6 card">
-        <header class="card-header"><p class="card-header-title is-size-4 is-centered">Default Settings</p></header>
-      ${weatherReport.components.cityPicker()}
-        </section>
-        </div>
+      </section>
+      <section class='cell mx-6 card'>
+        <header class='card-header'>
+          <p class='card-header-title is-size-4 is-centered'>Default Settings</p>
+        </header>
+        ${weatherReport.components.cityPicker()}
+ 
+        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageTemperatureKey,["celsius","fahrenheit"])}
+           
+        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageSpeedKey,["km/h","mph"])}
+    </div>
+
+    </section>
     `;
   };
 
   main.innerHTML += Settings();
 
+  // Calls dom events for returned html of city picker component
+  weatherReport.components.cityPickerEvents();
 
-// Calls dom events for returned html of city picker component
-  weatherReport.components.cityPickerEvents()
+  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageSpeedKey)
+  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageTemperatureKey)
 
-  // Reads user settings and saves them in storage them
-  // TODO turn into utility
-  let readFaves;
-  if (localStorage.getItem('favourites') === null) {
-    readFaves = {};
-  } else {
-    readFaves = JSON.parse(localStorage.getItem('favourites'));
-  }
-  let favouritesObj = readFaves;
+  weatherReport.components.handleDropdowns()
+
+  let favouritesObj = weatherReport.utilities.getFaveObjFromStorage();
+
   document.querySelectorAll('[id^=fave-]').forEach((checkbox) => {
     checkbox.addEventListener('click', (event) => {
       const cityName = event.target.id.replace('fave-', '');
@@ -65,6 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[id^=fave-]').forEach((checkbox) => {
     const cityName = checkbox.id.replace('fave-', '');
-    checkbox.checked = readFaves[cityName];
+    checkbox.checked = favouritesObj[cityName];
   });
 });
