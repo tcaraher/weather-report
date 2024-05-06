@@ -52,9 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return todaysTable;
     };
 
+
+    let homeCity;
+    if (localStorage.getItem('default-city') === null) {
+      homeCity = 'waterford';
+    } else {
+      homeCity = localStorage.getItem('default-city');
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
-    // sets the city to default unless has a parameter set. Won't work long term
-    const city = urlParams.has("city") ? urlParams.get("city") : "amsterdam";
+    const city = urlParams.has("city") ? urlParams.get("city") : homeCity;
     const now = dayjs();
     const currentHour = now.hour();
     const currentDay = now.day();
