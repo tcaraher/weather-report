@@ -1,33 +1,31 @@
-window.weatherReport.components.cityPicker = (defaultPicker) => {
-  let homeCity;
-  if (localStorage.getItem('default-city') === null) {
-    homeCity = 'Set Home City';
+window.weatherReport.components.settingsPicker = (localStorageKey, title, settingsList) => {
+  let settingsValueFromStorage;
+  if (localStorage.getItem(localStorageKey) === null) {
+    settingsValueFromStorage = title;
   } else {
-    homeCity = weatherReport.utilities.cityStripper(localStorage.getItem('default-city'));
+    settingsValueFromStorage = weatherReport.utilities.cityStripper(localStorage.getItem(localStorageKey));
   }
-  const defaultCityList = () => {
-    let cityList = '';
-    Object.keys(weatherReport.weatherData).forEach((cityQuery) => {
-      // iterates only over the daily object, as i'm just going through each city here. Stripping out the `_daily as well as I want just the city name
-      if (cityQuery.includes('_daily')) {
-        const city = cityQuery.replace('_daily', '');
-        cityList += `
-        <a id="city-selection-${city}" class="dropdown-item">
-            ${weatherReport.utilities.cityStripper(city)}
+
+  const displaySelectionItems = () => {
+    let elements = ""
+    settingsList.forEach(settingItem => {
+      elements += `
+        <a id="selection-${localStorageKey}-${settingItem}" class="dropdown-item">
+            ${weatherReport.utilities.cityStripper(settingItem)}
         </a>
-      `;
-      }
+      `
     });
-    return cityList;
+    return elements;
   };
+
 
   return `
 <div class='columns card-content'>
-  <p class='mt-1 mx-4 is-size-5'>Select Default City:</p>
+  <p class='mt-1 mx-4 is-size-5'>${title}:</p>
   <div class="dropdown">
     <div class="dropdown-trigger">
       <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-        <span id='selected-city'>${homeCity}</span>
+        <span id='selected-setting-${localStorageKey}'>${settingsValueFromStorage}</span>
         <span class="icon is-small">
           <i class="fas fa-angle-down" aria-hidden="true"></i>
         </span>
@@ -35,25 +33,26 @@ window.weatherReport.components.cityPicker = (defaultPicker) => {
     </div>
     <div class="dropdown-menu" id="dropdown-menu3" role="menu">
       <div class="dropdown-content">
-        ${defaultCityList()}
+      ${displaySelectionItems()}
       </div>
     </div>
   </div>
 </div>   
-    
-    `;
+    `
+
+    ;
 };
 
-window.weatherReport.components.cityPickerEvents = (returnURL) => {
+window.weatherReport.components.settingsPickerEventListener = (returnURL, localStorageKey) => {
   // Default city event listeners
-  document.querySelectorAll('[id^=city-selection]').forEach((selection) => {
+  document.querySelectorAll(`[id^=selection-${localStorageKey}]`).forEach((selection) => {
     selection.addEventListener('click', (event) => {
-      const cityName = selection.id.replace('city-selection-', '');
-      localStorage.setItem('default-city', cityName);
-      document.querySelector('#selected-city').innerHTML = weatherReport.utilities.cityStripper(cityName);
+      const settingValue = selection.id.replace(`selection-${localStorageKey}-`, '');
+      localStorage.setItem(localStorageKey, settingValue);
+      document.querySelector(`#selected-setting-${localStorageKey}`).innerHTML = weatherReport.utilities.cityStripper(settingValue);
       // sends user to the new default city if true is passed into function call. Used on home screen/city focus page to refresh page after default city update, not on settings page
       if (returnURL) {
-        document.getElementById(`city-selection-${cityName}`).setAttribute('href', `/city-focus/?city=${cityName}`);
+        document.getElementById(`selection-${localStorageKey}-${settingValue}`).setAttribute('href', `/city-focus/?city=${settingValue}`);
       }
     });
   });

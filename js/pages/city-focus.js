@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
           daily: { Low: 'temperature_2m_min', High: 'temperature_2m_max' },
         },
       };
+
       let cardContainer = '';
       // Passes in day index for weather data into the card component, along with the day of the week itself from array
       for (let dayOfTheWeekIndex = 0; dayOfTheWeekIndex < daysOfTheWeek.length; dayOfTheWeekIndex++) {
@@ -51,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     return `
-    ${weatherReport.components.cityPicker()}
+     ${weatherReport.components.settingsPicker(weatherReport.constants.storageDefaultCity , "Select Home City", weatherReport.utilities.listCities() )}
+
     <section class="columns mx-6 is-vcentered">
       <h1 class="column title is-size-1 has-text-centered">
         ${city.replace('_', ' ').toUpperCase()}
@@ -92,6 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   main.innerHTML = main.innerHTML + cityFocus();
 
-  weatherReport.components.cityPickerEvents(true);
+  weatherReport.components.settingsPickerEventListener(true, weatherReport.constants.storageDefaultCity);
   weatherReport.components.handleDropdowns();
 });

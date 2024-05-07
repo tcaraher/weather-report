@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const storageTemperatureKey = weatherReport.constants.storageTemperatureKey;
   const storageSpeedKey = weatherReport.constants.storageSpeedKey;
-  console.log(storageSpeedKey);
   let speedUnit;
   if (localStorage.getItem(storageSpeedKey) === null) {
     speedUnit = 'Set Default Speed Unit';
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let tempUnit;
   if (localStorage.getItem(storageTemperatureKey) === null) {
-    tempUnit = 'Set Default Speed Unit';
+    tempUnit = 'Set Default Temperature Unit';
   } else {
     tempUnit = localStorage.getItem(storageTemperatureKey);
   }
@@ -53,11 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <header class='card-header'>
           <p class='card-header-title is-size-4 is-centered'>Default Settings</p>
         </header>
-        ${weatherReport.components.cityPicker()}
+        ${weatherReport.components.settingsPicker(weatherReport.constants.storageDefaultCity , "Select Home City", weatherReport.utilities.listCities() )}
  
-        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageTemperatureKey, ['celsius', 'fahrenheit'])}
+        ${weatherReport.components.settingsPicker(weatherReport.constants.storageTemperatureKey, "Select Temperature Units", ['celsius', 'fahrenheit'])}
            
-        ${weatherReport.components.settingDropdowns(weatherReport.constants.storageSpeedKey, ['km/h', 'mph'])}
+        ${weatherReport.components.settingsPicker(weatherReport.constants.storageSpeedKey,"Select Speed Units", ['km/h', 'mph'])}
     </div>
 
     </section>
@@ -67,10 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
   main.innerHTML += Settings();
 
   // Calls dom events for returned html of city picker component
-  weatherReport.components.cityPickerEvents();
-
-  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageSpeedKey);
-  weatherReport.components.dropdownSelectionEvents(weatherReport.constants.storageTemperatureKey);
+  weatherReport.components.settingsPickerEventListener(false, weatherReport.constants.storageDefaultCity);
+  weatherReport.components.settingsPickerEventListener(false, weatherReport.constants.storageSpeedKey);
+  weatherReport.components.settingsPickerEventListener(false, weatherReport.constants.storageTemperatureKey);
 
   weatherReport.components.handleDropdowns();
 
