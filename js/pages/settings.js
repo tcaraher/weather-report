@@ -19,23 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     return cityListItem;
   };
+  
 
-  const storageTemperatureKey = weatherReport.constants.storageTemperatureKey;
-  const storageSpeedKey = weatherReport.constants.storageSpeedKey;
-  let speedUnit;
-  if (localStorage.getItem(storageSpeedKey) === null) {
-    speedUnit = 'Set Default Speed Unit';
-  } else {
-    speedUnit = localStorage.getItem(storageSpeedKey);
-  }
-
-  let tempUnit;
-  if (localStorage.getItem(storageTemperatureKey) === null) {
-    tempUnit = 'Set Default Temperature Unit';
-  } else {
-    tempUnit = localStorage.getItem(storageTemperatureKey);
-  }
-
+  const getSettings = () => {
+    let settings = ""
+    Object.keys(weatherReport.settings).forEach((setting) => {
+      settings += weatherReport.components.settingsPicker(weatherReport.settings[setting].localStorageKey, weatherReport.settings[setting].titleUI, weatherReport.settings[setting].selectionItems());
+    });
+    return settings
+  };
+  
   const Settings = () => {
     return `
     <h1 class='title is-size-1 has-text-centered'>
@@ -52,23 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <header class='card-header'>
           <p class='card-header-title is-size-4 is-centered'>Default Settings</p>
         </header>
-        ${weatherReport.components.settingsPicker(weatherReport.constants.storageDefaultCity , "Select Home City", weatherReport.utilities.listCities() )}
- 
-        ${weatherReport.components.settingsPicker(weatherReport.constants.storageTemperatureKey, "Select Temperature Units", ['celsius', 'fahrenheit'])}
-           
-        ${weatherReport.components.settingsPicker(weatherReport.constants.storageSpeedKey,"Select Speed Units", ['km/h', 'mph'])}
+        ${getSettings()}
     </div>
-
     </section>
     `;
   };
 
   main.innerHTML += Settings();
 
-  // Calls dom events for returned html of city picker component
-  weatherReport.components.settingsPickerEventListener(false, weatherReport.constants.storageDefaultCity);
-  weatherReport.components.settingsPickerEventListener(false, weatherReport.constants.storageSpeedKey);
-  weatherReport.components.settingsPickerEventListener(false, weatherReport.constants.storageTemperatureKey);
+  // Calls dom events for returned html of each settings picker component
+  Object.keys(weatherReport.settings).forEach((setting) => weatherReport.components.settingsPickerEventListener(false, weatherReport.settings[setting].localStorageKey));
 
   weatherReport.components.handleDropdowns();
 

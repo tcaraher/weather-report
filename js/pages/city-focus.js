@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     return `
-     ${weatherReport.components.settingsPicker(weatherReport.constants.storageDefaultCity , "Select Home City", weatherReport.utilities.listCities() )}
+     ${weatherReport.components.settingsPicker(weatherReport.settings.homeCity.localStorageKey , "Select Home City", weatherReport.utilities.listCities() )}
 
     <section class="columns mx-6 is-vcentered">
       <h1 class="column title is-size-1 has-text-centered">
@@ -94,6 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   main.innerHTML = main.innerHTML + cityFocus();
 
-  weatherReport.components.settingsPickerEventListener(true, weatherReport.constants.storageDefaultCity);
+  weatherReport.components.settingsPickerEventListener(true, weatherReport.settings.homeCity.localStorageKey);
   weatherReport.components.handleDropdowns();
 });

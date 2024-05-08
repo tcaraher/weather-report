@@ -7,40 +7,36 @@ window.weatherReport.components.settingsPicker = (localStorageKey, title, settin
   }
 
   const displaySelectionItems = () => {
-    let elements = ""
-    settingsList.forEach(settingItem => {
+    let elements = '';
+    settingsList.forEach((settingItem) => {
       elements += `
         <a id="selection-${localStorageKey}-${settingItem}" class="dropdown-item">
             ${weatherReport.utilities.cityStripper(settingItem)}
         </a>
-      `
+      `;
     });
     return elements;
   };
-
-
   return `
-<div class='columns card-content'>
-  <p class='mt-1 mx-4 is-size-5'>${title}:</p>
-  <div class="dropdown">
-    <div class="dropdown-trigger">
-      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-        <span id='selected-setting-${localStorageKey}'>${settingsValueFromStorage}</span>
-        <span class="icon is-small">
-          <i class="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-      </button>
-    </div>
-    <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-      <div class="dropdown-content">
-      ${displaySelectionItems()}
+    <div class='columns card-content'>
+      <p class='mt-1 mx-4 is-size-5'>${title}:</p>
+      <div class="dropdown">
+        <div class="dropdown-trigger">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+            <span id='selected-setting-${localStorageKey}'>${settingsValueFromStorage}</span>
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+          <div class="dropdown-content">
+          ${displaySelectionItems()}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>   
-    `
-
-    ;
+    </div>   
+    `;
 };
 
 window.weatherReport.components.settingsPickerEventListener = (returnURL, localStorageKey) => {
@@ -49,10 +45,13 @@ window.weatherReport.components.settingsPickerEventListener = (returnURL, localS
     selection.addEventListener('click', (event) => {
       const settingValue = selection.id.replace(`selection-${localStorageKey}-`, '');
       localStorage.setItem(localStorageKey, settingValue);
-      document.querySelector(`#selected-setting-${localStorageKey}`).innerHTML = weatherReport.utilities.cityStripper(settingValue);
+      document.querySelector(`#selected-setting-${localStorageKey}`).innerHTML =
+        weatherReport.utilities.cityStripper(settingValue);
       // sends user to the new default city if true is passed into function call. Used on home screen/city focus page to refresh page after default city update, not on settings page
       if (returnURL) {
-        document.getElementById(`selection-${localStorageKey}-${settingValue}`).setAttribute('href', `/city-focus/?city=${settingValue}`);
+        document
+          .getElementById(`selection-${localStorageKey}-${settingValue}`)
+          .setAttribute('href', `/city-focus/?city=${settingValue}`);
       }
     });
   });

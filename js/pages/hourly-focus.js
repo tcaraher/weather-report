@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
 
-  const hourlySummaries = (city, currentDayIndex, requestedDayFromURL, daysOfTheWeek) => {
+  const hourlySummaries = (city, currentDayIndex, requestedDayFromURL, currentHour) => {
     // Object defining the data I would like to display in each card
     const hourlySummaryData = {
       [city]: {
@@ -11,20 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       },
     };
-    const hourlyDataQuery = window.weatherReport.weatherData[city + '_hourly'].hourly.time;
+    const hourlyDataQuery = weatherReport.weatherData[city + '_hourly'].hourly.time;
 
     // Builds a new days of the week array, starting from the current day.
-    const newDaysOfTheWeek = []
+    const newDaysOfTheWeek = [];
     for (let i = currentDayIndex; i < currentDayIndex + 7; i++) {
-      newDaysOfTheWeek.push(daysOfTheWeek[i % 7]); // Using modulo operator to wrap around if needed
+      newDaysOfTheWeek.push(weatherReport.constants.daysOfTheWeek[i % 7]); // Using modulo operator to wrap around if needed
     }
     // sets the day to query in the data to the index of the requested day from the new week array.
-    const dayToQuery = newDaysOfTheWeek.indexOf(requestedDayFromURL)
-
+    const dayToQuery = newDaysOfTheWeek.indexOf(requestedDayFromURL);
 
     let cardContainer = '';
-    let hour = 0;
     let getHourlyIndexFromData;
+    let hour
+    const requestedDayIndex = weatherReport.constants.daysOfTheWeek.indexOf(requestedDayFromURL)
+    if (currentDayIndex === requestedDayIndex) {
+      hour = currentHour
+    } else {
+      hour = 0
+    }
     while (hour < 24) {
       //Had an issue with the first numbers 0-9 being formatted with two digits. I wanted a nice way to fix this -  https://stackoverflow.com/questions/8043026/how-to-format-numbers-by-prepending-0-to-single-digit-numbers
       hour = hour.toLocaleString('en-US', {
@@ -49,24 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const hourlyFocus = () => {
     const urlParams = new URLSearchParams(window.location.search);
 
-    // sets the city to default unless has a parameter set. Won't work long term
-    const city = urlParams.has('city') ? urlParams.get('city') : 'amsterdam';
-    const dayOfTheWeekFromURL = urlParams.has('day') ? urlParams.get('day') : 'Tuesday';
     const now = dayjs();
     const currentHour = now.hour();
     const currentDay = now.day();
 
-    const daysOfTheWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    // sets the city and day to default unless has a parameter set.
+    const city = urlParams.has('city') ? urlParams.get('city') : localStorage.getItem(weatherReport.settings.homeCity.localStorageKey);
+    const dayOfTheWeekFromURL = urlParams.has('day') ? urlParams.get('day') : weatherReport.constants.daysOfTheWeek[currentDay];
+    const dayOfTheWeekIndex = weatherReport.constants.daysOfTheWeek.indexOf(dayOfTheWeekFromURL)
+
 
     return `
     <h1 class="column title is-size-1 has-text-centered">
-      ${city.replace('_', ' ').toUpperCase()} | ${dayOfTheWeekFromURL.toUpperCase()}
+      ${weatherReport.utilities.cityStripper(city)} | ${dayOfTheWeekIndex === currentDay ? "TODAY" : dayOfTheWeekFromURL.toUpperCase()}
     </h1>
     <h2 class=" is-size-1 has-text-centered">
       Hourly Summary
     </h2>
     <section class="grid is-col-min-9 m-6 is-vcentered">
-      ${hourlySummaries(city, currentDay, dayOfTheWeekFromURL, daysOfTheWeek)}
+      ${hourlySummaries(city, currentDay, dayOfTheWeekFromURL, currentHour)}
     </section>
     `;
   };
