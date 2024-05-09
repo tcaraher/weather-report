@@ -1,6 +1,9 @@
+// Settings page
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
 
+// TODO Refactor this to use the city list util
+// Displays the list of cities with checkboxes  
   const cityList = () => {
     let cityListItem = '';
     Object.keys(weatherReport.weatherData).forEach((cityQuery) => {
@@ -20,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return cityListItem;
   };
 
-
+// // iterates over each setting in the settings.js object and creates a dropdown with settingsPicker
   const getSettings = () => {
     let settings = ""
     Object.keys(weatherReport.settings).forEach((setting) => {
@@ -40,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class='card-header-title is-size-4 is-centered'>Favourite Cities</p>
           </header>
           <button id='reset-faves' class='ml-5 my-3 button'>Reset All Favourites</button>
-
           ${cityList()}
         </section>
         <section class='cell mx-6 card'>
@@ -79,7 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
   weatherReport.utilities.handleDropdowns();
 
   weatherReport.components.runGetAndSetNearestCity()
-
+  
+  // Handles logic and events for when a favorite city id checked 
   let favouritesObj = weatherReport.utilities.getFaveObjFromStorage();
 
   document.querySelectorAll('[id^=fave-]').forEach((checkbox) => {
