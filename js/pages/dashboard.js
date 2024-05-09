@@ -39,18 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const Dashboard = () => {
     return `
-    <p class='title is-size-2 has-text-centered'>
-      ${!hasFaves ? '' : 'Favourite Cities'}
-    </p>
-    <div class="grid is-col-min-11">
-      ${cityCards(true)}
-    </div>
-    <p class='title is-size-2 has-text-centered'>${!hasFaves ? 'Cities' : 'Other Cities'}</p>
-    <p class='has-text-centered'> ${!hasFaves ? `Set your favourite cities in <a href='/settings/'>settings!</a>` : ''}
-    </p>
-    <div class="grid is-col-min-11">
-      ${cityCards(false)}
-    </div>
+      <p class='title is-size-2 has-text-centered'>
+        ${!hasFaves ? '' : 'Favourite Cities'}
+      </p>
+      <div class="grid is-col-min-11">
+        ${cityCards(true)}
+      </div>
+      <p class='title is-size-2 has-text-centered'>${!hasFaves ? 'Cities' : 'Other Cities'}</p>
+      <p class='has-text-centered'> ${!hasFaves ? `Set your favourite cities in <a href='/settings/'>settings!</a>` : ''}
+      </p>
+      <div class="grid is-col-min-11">
+        ${cityCards(false)}
+      </div>
     `;
   };
   main.innerHTML += Dashboard();

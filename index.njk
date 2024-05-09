@@ -1,11 +1,11 @@
 ---
 layout: layout.njk
 title: Home | Weather Report
-script: /js/pages/city-focus.js
+script: /js/pages/index.js
 eleventyNavigation:
     key: Home
     order: 1
 ---
 
-{#The base index.html is running the same page technically as city-focus, although is using the default#}
-{#location. So the user is presented with their home city when first loading the site, instead of the dashboard#}
+<div id='locationModal'></div>
+<div id='city-focus'></div>

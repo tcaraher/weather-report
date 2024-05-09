@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return `
     <h1 class="column title is-size-1 has-text-centered">
-      ${weatherReport.utilities.cityStripper(city)} | ${dayOfTheWeekIndex === currentDay ? "TODAY" : dayOfTheWeekFromURL.toUpperCase()}
+      ${weatherReport.utilities.cityStripper(city)} | ${dayOfTheWeekIndex === currentDay ? "TODAY" :
+      dayOfTheWeekFromURL.toUpperCase()}
     </h1>
     <h2 class=" is-size-1 has-text-centered">
       Hourly Summary
