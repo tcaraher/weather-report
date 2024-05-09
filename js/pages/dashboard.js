@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
-  console.log(localStorage.getItem('favourites'));
 
   const readFaves = weatherReport.utilities.getFaveObjFromStorage();
   const hasFaves = Object.values(readFaves).includes(true);
 
   // Iterates over each key in the weather data key value pairs just for the daily weather (I don't need it to do it twice for each city) Then takes _daily out so i'm just left with the city name
   const cityCards = (favourites) => {
+    // Uses list cities util for just a list of available cities without _etc
+    const cityList = weatherReport.utilities.listCities()
     let cards = '';
     let isFave = false;
-    Object.keys(weatherReport.weatherData).forEach((cityQuery) => {
-      // iterates only over the daily object, as i'm just going through each city here. Stripping out the "_daily" as well as I want just the city name
-      if (cityQuery.includes('_daily')) {
-        const city = cityQuery.replace('_daily', '');
 
+    cityList.forEach((cityQuery) => {
+        const city = cityQuery.replace('_daily', '');
+        //Data to be passed in to weather cards
         const dashboardCardData = {
           [city]: {
             daily: {
@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             },
           },
         };
+
+        // sets url for card to link to for more. To be passed in to the weather card components
         const cardLinkTo = `/city-focus/?city=${city}`;
 
         // reads local storage to check if the city is a fave
@@ -32,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (!favourites && !isFave) {
           cards += weatherReport.components.weatherCard(dashboardCardData, 0, city, cardLinkTo);
         }
-      }
     });
     return cards;
   };
@@ -40,14 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const Dashboard = () => {
     return `
       <p class='title is-size-2 has-text-centered'>
+<!--      Only renders the fave section if there are favourites -->
         ${!hasFaves ? '' : 'Favourite Cities'}
       </p>
       <div class="grid is-col-min-11">
+<!--      Renders the city cards with faves only, so boolean set to true-->
         ${cityCards(true)}
       </div>
+<!--      Changes text based on if there are faves-->
       <p class='title is-size-2 has-text-centered'>${!hasFaves ? 'Cities' : 'Other Cities'}</p>
       <p class='has-text-centered'> ${!hasFaves ? `Set your favourite cities in <a href='/settings/'>settings!</a>` : ''}
       </p>
+<!--      displays rest of the cities or all of them if no faves are set-->
       <div class="grid is-col-min-11">
         ${cityCards(false)}
       </div>

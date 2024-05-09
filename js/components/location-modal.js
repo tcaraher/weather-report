@@ -1,3 +1,4 @@
+// Displays the location modal for the index on first load of site.
 window.weatherReport.components.locationModal = () => {
   return `
     <div class="modal">
@@ -9,8 +10,7 @@ window.weatherReport.components.locationModal = () => {
         </header>
         <section class="modal-card-body">
           <p class='is-size-5 mb-5'>Select your default city:</p>
-          ${weatherReport.components.settingsPicker(weatherReport.settings.homeCity.localStorageKey,
-          weatherReport.settings.homeCity.titleUI, weatherReport.settings.homeCity.selectionItems())}
+          ${weatherReport.components.settingsPicker(weatherReport.settings.homeCity)}
           <hr class='mt-5' />
           <p class='is-size-5 pt-4'>Or get your nearest city's weather data via your location:</p>
           ${weatherReport.components.displayLocationUI()}
@@ -22,7 +22,22 @@ window.weatherReport.components.locationModal = () => {
       </div>
     </div>
     </div>
-`
-}
+`;
+};
 
+// Event listeners and logic for modal
+window.weatherReport.components.locationModalEvents = () => {
+  const modalElement = document.querySelector('.modal')
 
+  // If there is no stored default city, show the location modal on page load
+  if (localStorage.getItem(weatherReport.settings.homeCity.localStorageKey) === null) {
+    window.addEventListener('load', () => {
+      modalElement.classList.toggle('is-active');
+    });
+  }
+
+  // closes the modal with the X button in upper right.
+  document.getElementById('close-modal').addEventListener('click', () => {
+    modalElement.classList.toggle('is-active');
+  });
+};

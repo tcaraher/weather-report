@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const getSettings = () => {
     let settings = ""
     Object.keys(weatherReport.settings).forEach((setting) => {
-      settings += weatherReport.components.settingsPicker(weatherReport.settings[setting].localStorageKey, weatherReport.settings[setting].titleUI, weatherReport.settings[setting].selectionItems());
+      settings += weatherReport.components.settingsPicker(weatherReport.settings[setting]);
     });
     return settings
   };
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Calls dom events for returned html of each settings picker component
   Object.keys(weatherReport.settings).forEach((setting) => weatherReport.components.settingsPickerEventListener(false, weatherReport.settings[setting].localStorageKey));
 
-  weatherReport.components.handleDropdowns();
+  weatherReport.utilities.handleDropdowns();
 
   weatherReport.components.runGetAndSetNearestCity()
 

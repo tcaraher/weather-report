@@ -1,6 +1,8 @@
+// Hourly focus page. Displays each hour with relevent hourly data
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
 
+  // function to display the hourly summaries
   const hourlySummaries = (city, currentDayIndex, requestedDayFromURL, currentHour) => {
     // Object defining the data I would like to display in each card
     const hourlySummaryData = {
@@ -11,20 +13,25 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       },
     };
+
+    // More defined query for weather data
     const hourlyDataQuery = weatherReport.weatherData[city + '_hourly'].hourly.time;
 
-    // Builds a new days of the week array, starting from the current day.
+    // Builds a new days of the week array, starting from the current day. This is a much nicer version of what is in the city component. I need less specific variables here, just the array
     const newDaysOfTheWeek = [];
     for (let i = currentDayIndex; i < currentDayIndex + 7; i++) {
-      newDaysOfTheWeek.push(weatherReport.constants.daysOfTheWeek[i % 7]); // Using modulo operator to wrap around if needed
+      newDaysOfTheWeek.push(weatherReport.constants.daysOfTheWeek[i % 7]);
     }
+
     // sets the day to query in the data to the index of the requested day from the new week array.
     const dayToQuery = newDaysOfTheWeek.indexOf(requestedDayFromURL);
+    const requestedDayIndex = weatherReport.constants.daysOfTheWeek.indexOf(requestedDayFromURL)
 
+    // initialized the card container string for html
     let cardContainer = '';
+
     let getHourlyIndexFromData;
     let hour
-    const requestedDayIndex = weatherReport.constants.daysOfTheWeek.indexOf(requestedDayFromURL)
     if (currentDayIndex === requestedDayIndex) {
       hour = currentHour
     } else {
