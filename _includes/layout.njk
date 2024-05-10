@@ -5,23 +5,27 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Weather Report</title>
-{#        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />#}
         <link
                 rel="stylesheet"
                 href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
         >
+        <!-- External Scripts and Bulma -->
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="https://kit.fontawesome.com/582e951e84.js" crossorigin="anonymous"></script>
         <script src="/js/bulma.js"></script>
-        <script  src="/js/weather-report.js"></script>
+        <!--  Namespacing file-->
+        <script src="/js/weather-report.js"></script>
+        <!--Components-->
         <script src="/js/components/weather-card.js"></script>
         <script src="/js/components/settings-picker.js"></script>
         <script src="/js/components/location.js"></script>
         <script src="/js/components/location-modal.js"></script>
         <script src="/js/components/city-focus.js"></script>
+        <!--  Utils, constants, settings#-->
         <script src="/js/utils/utilities.js"></script>
         <script src="/js/constants.js"></script>
         <script src="/js/settings.js"></script>
+        <!-- Data -->
         <script src="/js/data/weather_data.js"></script>
         <script src="/js/data/weather-codes.js"></script>
         {% if script %}
