@@ -98,11 +98,10 @@ window.weatherReport.components.cityFocus = () => {
           Max Wind Speed: ${weatherReport.utilities.getValue(city + '_daily', dailyData.daily.wind_speed_10m_max[0], 'wind_speed_10m_max')}
         </p>
       </div>
-      ${window.weatherReport.components.weatherCard(rightNowData, currentHour, 'Right Now!')}
+      ${window.weatherReport.components.weatherCard(rightNowData, currentHour, `Right Now!`)}
     </section>
     <div class="columns">
       ${getDaysOfWeekDailySummaries(city, currentDay, daysOfTheWeek)}
     </div>
-    
     `;
 };

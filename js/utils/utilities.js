@@ -71,3 +71,5 @@ window.weatherReport.utilities.getValue = (cityQuery, queryResult, dataUnitTypeR
     return queryResult + ' ' + fullDataQuery;
   }
 };
+
+

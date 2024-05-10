@@ -76,6 +76,7 @@ const getAndSetNearestCity = async () => {
   // resets the error display to hidden if the user tries again
   document.getElementById('location-error').style.visibility = 'hidden';
 
+  // Run the await function with loading-messages
   // displays a loading message just before the userCoordinates runs the getUserCoordinates await function
   document.getElementById('loading-message').style.visibility = 'visible';
   // awaits getUserCoordinates. I needed more info on async await and error handling. this catch method i found intuitive - https://wesbos.com/12-advanced-flow-control/71-async-await-error-handling

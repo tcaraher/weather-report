@@ -2,36 +2,32 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.querySelector('main');
 
-// TODO Refactor this to use the city list util
-// Displays the list of cities with checkboxes  
-  const cityList = () => {
+  // Displays the list of cities with checkboxes
+  const listOfCities = () => {
     let cityListItem = '';
-    Object.keys(weatherReport.weatherData).forEach((cityQuery) => {
-      // iterates only over the daily object, as i'm just going through each city here. Stripping out the `_daily as well as I want just the city name
-      if (cityQuery.includes('_daily')) {
-        const city = cityQuery.replace('_daily', '');
-        cityListItem += `
+    // Using my util listCities to return
+    weatherReport.utilities.listCities().forEach((cityQuery) => {
+      cityListItem += `
             <section class='card-content'>
             <label class='content checkbox'>
-            <input class='mx-4' type='checkbox' id='fave-${city}'/>
-            ${city.replace('_', ' ').toUpperCase()}
+            <input class='mx-4' type='checkbox' id='fave-${cityQuery}'/>
+            ${weatherReport.utilities.cityStripper(cityQuery)}
             </label>
             </section>
       `;
-      }
     });
     return cityListItem;
   };
 
-// // iterates over each setting in the settings.js object and creates a dropdown with settingsPicker
+  // // iterates over each setting in the settings.js object and creates a dropdown with settingsPicker
   const getSettings = () => {
-    let settings = ""
+    let settings = '';
     Object.keys(weatherReport.settings).forEach((setting) => {
       settings += weatherReport.components.settingsPicker(weatherReport.settings[setting]);
     });
-    return settings
+    return settings;
   };
-  
+
   const Settings = () => {
     return `
       <h1 class='title is-size-1 has-text-centered'>
@@ -43,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class='card-header-title is-size-4 is-centered'>Favourite Cities</p>
           </header>
           <button id='reset-faves' class='ml-5 my-3 button'>Reset All Favourites</button>
-          ${cityList()}
+          ${listOfCities()}
         </section>
         <section class='cell mx-6 card'>
           <header class='card-header'>
@@ -63,16 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
   main.innerHTML += Settings();
 
   // Reset Settings
-  document.getElementById('reset-settings').addEventListener('click', ()=> {
-    Object.keys(weatherReport.settings).forEach(item => { localStorage.removeItem(weatherReport.settings[item].localStorageKey)
-      location.reload()
-    })
-  })
+  document.getElementById('reset-settings').addEventListener('click', () => {
+    Object.keys(weatherReport.settings).forEach((item) => {
+      localStorage.removeItem(weatherReport.settings[item].localStorageKey);
+      location.reload();
+    });
+  });
 
   // Reset Faves
   document.getElementById('reset-faves').addEventListener('click', () => {
     localStorage.removeItem('favourites');
-    location.reload()
+    location.reload();
   });
 
   // Calls dom events for returned html of each settings picker component
@@ -80,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   weatherReport.utilities.handleDropdowns();
 
-  weatherReport.components.runGetAndSetNearestCity()
-  
-  // Handles logic and events for when a favorite city id checked 
+  weatherReport.components.runGetAndSetNearestCity();
+
+  // Handles logic and events for when a favorite city id checked
   let favouritesObj = weatherReport.utilities.getFaveObjFromStorage();
 
   document.querySelectorAll('[id^=fave-]').forEach((checkbox) => {

@@ -4,4 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   main.innerHTML = main.innerHTML + weatherReport.components.cityFocus();
   weatherReport.components.settingsPickerEventListener(true, weatherReport.settings.homeCity.localStorageKey);
   weatherReport.utilities.handleDropdowns();
+
+  //
 });
