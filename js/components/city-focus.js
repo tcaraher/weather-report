@@ -1,5 +1,5 @@
 // Full component for the city focus view, used on index and the url param request from the dashboard
-window.weatherReport.components.cityFocus = () => {
+export const cityFocus = () => {
   const daysOfTheWeek = weatherReport.constants.daysOfTheWeek;
 
   // Returns a container with all of the weather cards rendered for each day of the week. Takes in

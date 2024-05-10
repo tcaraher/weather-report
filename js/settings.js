@@ -1,4 +1,4 @@
-window.weatherReport.settings = {
+export const settings = {
   homeCity: {
     localStorageKey: 'default-city',
     titleUI: 'Select Home City',

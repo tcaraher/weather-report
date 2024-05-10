@@ -1,4 +1,4 @@
-window.weatherReport.weatherCodes = {
+export const weatherCodes = {
   0: {
     day: {
       description: 'Sunny',

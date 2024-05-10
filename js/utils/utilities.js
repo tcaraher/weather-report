@@ -1,5 +1,5 @@
 // returns an array of all available cities in slug format, without _daily or _hourly
-window.weatherReport.utilities.listCities = () => {
+export const listCities = () => {
   // returns .map of all cities if the query includes daily, as I only need one instance of each city
   return Object.keys(weatherReport.weatherData)
     .filter((cityQuery) => {
@@ -15,7 +15,7 @@ window.weatherReport.utilities.listCities = () => {
 
 
 // Returns a user friendly version of the string from the weather data
-window.weatherReport.utilities.cityStripper = (originalCityNameFromData) => {
+export const cityStripper = (originalCityNameFromData) => {
   const noUnderscores = originalCityNameFromData.replace('_', ' ');
   // Takes the no underscore version, splits each city at a space, puts each word into a map, and for each first characher of each word makes it uppercase, and joins the word back to the first Char from the 1 index, and adds a space.
   return noUnderscores
@@ -25,7 +25,7 @@ window.weatherReport.utilities.cityStripper = (originalCityNameFromData) => {
 };
 
 // Handles all dropdowns
-window.weatherReport.utilities.handleDropdowns = () => {
+export const handleDropdowns = () => {
   // toggle dropdowns
   document.querySelectorAll('.dropdown').forEach((dropdown) =>
     dropdown.addEventListener('click', () => {
@@ -37,7 +37,7 @@ window.weatherReport.utilities.handleDropdowns = () => {
 
 // returns the fave object and parses the string into an object.
 // Handles when site is first loaded/when no favourites object is initialized into local storage yet, as some of my calls seemed to cause errors if there was no favourites object initialized
-window.weatherReport.utilities.getFaveObjFromStorage = () => {
+export const getFaveObjFromStorage = () => {
   let readFaves;
   if (localStorage.getItem('favourites') === null) {
     readFaves = {};
@@ -51,7 +51,7 @@ window.weatherReport.utilities.getFaveObjFromStorage = () => {
 
 
 // Gets and converts (if needed) temperature units. Takes the cityName plus the _hourly/daily part of the string, the result of that query, and the units that were requested
-window.weatherReport.utilities.getValue = (cityQuery, queryResult, dataUnitTypeRequested) => {
+export const getValue = (cityQuery, queryResult, dataUnitTypeRequested) => {
   const dailyVsHourly = cityQuery.includes('daily') ? 'daily_units' : 'hourly_units';
   const fullDataQuery = weatherReport.weatherData[cityQuery][dailyVsHourly][dataUnitTypeRequested];
 

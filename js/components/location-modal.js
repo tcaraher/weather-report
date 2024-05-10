@@ -1,5 +1,5 @@
 // Displays the location modal for the index on first load of site.
-window.weatherReport.components.locationModal = () => {
+export const locationModal = () => {
   return `
     <div class="modal">
       <div class="modal-background"></div>
@@ -26,7 +26,7 @@ window.weatherReport.components.locationModal = () => {
 };
 
 // Event listeners and logic for modal
-window.weatherReport.components.locationModalEvents = () => {
+export const locationModalEvents = () => {
   const modalElement = document.querySelector('.modal')
 
   // If there is no stored default city, show the location modal on page load

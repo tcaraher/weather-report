@@ -1,6 +1,6 @@
 // Settings picker component for each setting. Takes in the setting object defined in settings.js,
 // which can take any key and options - the logic would need to be implemented though
-window.weatherReport.components.settingsPicker = (settingObj) => {
+export const settingsPicker = (settingObj) => {
   const localStorageKey = settingObj.localStorageKey;
   const title = settingObj.titleUI;
   const settingsOptions = settingObj.selectionItems();
@@ -51,7 +51,7 @@ window.weatherReport.components.settingsPicker = (settingObj) => {
 
 
 // Events and local storage logic for component. Checks if it needs to be able add url params - this is used in the dropdown in city focus, not in the settings panel. Also needs the storage key
-window.weatherReport.components.settingsPickerEventListener = (returnURL, localStorageKey) => {
+export const settingsPickerEventListener = (returnURL, localStorageKey) => {
 
   // Finds all elements with an id that includes the key and adds a click listener.
   document.querySelectorAll(`[id^=selection-${localStorageKey}]`).forEach((selection) => {

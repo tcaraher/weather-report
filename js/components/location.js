@@ -1,5 +1,5 @@
 // Component that just returns the html for the location buttons and info etc..
-window.weatherReport.components.displayLocationUI = () => {
+export const displayLocationUI = () => {
   return `
     <button id='location-button' class='button'>Get Location!</button>
     <p id='loading-message' style='visibility: hidden' class='is-size-5'>Getting Location...</p>
@@ -114,7 +114,7 @@ const getAndSetNearestCity = async () => {
 };
 
 // The init function for the logic essentially. Get Location button and run functions
-window.weatherReport.components.runGetAndSetNearestCity = () => {
+export const runGetAndSetNearestCity = () => {
 
   const getLocationButton = document.getElementById('location-button');
   getLocationButton.addEventListener('click', () => {

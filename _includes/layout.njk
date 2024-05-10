@@ -13,21 +13,8 @@
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="https://kit.fontawesome.com/582e951e84.js" crossorigin="anonymous"></script>
         <script src="/js/bulma.js"></script>
-        <!--  Namespacing file-->
-        <script src="/js/weather-report.js"></script>
-        <!--Components-->
-        <script src="/js/components/weather-card.js"></script>
-        <script src="/js/components/settings-picker.js"></script>
-        <script src="/js/components/location.js"></script>
-        <script src="/js/components/location-modal.js"></script>
-        <script src="/js/components/city-focus.js"></script>
-        <!--  Utils, constants, settings#-->
-        <script src="/js/utils/utilities.js"></script>
-        <script src="/js/constants.js"></script>
-        <script src="/js/settings.js"></script>
-        <!-- Data -->
-        <script src="/js/data/weather_data.js"></script>
-        <script src="/js/data/weather-codes.js"></script>
+        <!--weather-report module with all imports-->
+        <script type='module' src="/js/weather-report.js"></script>
         {% if script %}
             <script src="{{ script }}"></script>
         {% endif %}
