@@ -83,7 +83,7 @@ export const weatherCodeImg = (weatherCode) => {
 
 // Programatically populates an object with the description image from switch statement
 let weatherCodes = {};
-Object.entries(weatherCodeDesc).forEach(([code, value], index) => {
+Object.entries(weatherCodeDesc).forEach(([code, value]) => {
   weatherCodes[code] = {
     description: value,
     image: weatherCodeImg(parseInt(code)),

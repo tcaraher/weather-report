@@ -6,8 +6,8 @@ import { weatherCard } from '/js/components/weather-card.js';
 import weatherCodes from '/js/data/weather-codes.js';
 import { weatherData } from '/js/data/weather_data.js';
 import { cityStripper, getFaveObjFromStorage, getValue, handleDropdowns, listCities } from '/js/utils/utilities.js';
-import { daysOfTheWeek } from './constants.js';
-import { settingsObj } from './settings-obj.js';
+import { daysOfTheWeek } from '/js/constants.js';
+import { settingsObj } from '/js/settings-obj.js';
 
 window.weatherReport = {
   components: {
