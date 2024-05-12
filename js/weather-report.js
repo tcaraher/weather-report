@@ -3,7 +3,7 @@ import { displayLocationUI, runGetAndSetNearestCity } from '/js/components/locat
 import { locationModal, locationModalEvents } from '/js/components/location-modal.js';
 import { settingsPicker, settingsPickerEventListener } from '/js/components/settings-picker.js';
 import { weatherCard } from '/js/components/weather-card.js';
-import { weatherCodes } from '/js/data/weather-codes.js';
+import weatherCodes from '/js/data/weather-codes.js';
 import {weatherData} from '/js/data/weather_data.js';
 import { cityStripper, getFaveObjFromStorage, getValue, handleDropdowns, listCities } from '/js/utils/utilities.js';
 import { daysOfTheWeek } from './constants.js';

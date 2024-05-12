@@ -1,282 +1,93 @@
-export const weatherCodes = {
-  0: {
-    day: {
-      description: 'Sunny',
-      image: 'http://openweathermap.org/img/wn/01d@2x.png',
-    },
-    night: {
-      description: 'Clear',
-      image: 'http://openweathermap.org/img/wn/01n@2x.png',
-    },
-  },
-  1: {
-    day: {
-      description: 'Mainly Sunny',
-      image: 'http://openweathermap.org/img/wn/01d@2x.png',
-    },
-    night: {
-      description: 'Mainly Clear',
-      image: 'http://openweathermap.org/img/wn/01n@2x.png',
-    },
-  },
-  2: {
-    day: {
-      description: 'Partly Cloudy',
-      image: 'http://openweathermap.org/img/wn/02d@2x.png',
-    },
-    night: {
-      description: 'Partly Cloudy',
-      image: 'http://openweathermap.org/img/wn/02n@2x.png',
-    },
-  },
-  3: {
-    day: {
-      description: 'Cloudy',
-      image: 'http://openweathermap.org/img/wn/03d@2x.png',
-    },
-    night: {
-      description: 'Cloudy',
-      image: 'http://openweathermap.org/img/wn/03n@2x.png',
-    },
-  },
-  45: {
-    day: {
-      description: 'Foggy',
-      image: 'http://openweathermap.org/img/wn/50d@2x.png',
-    },
-    night: {
-      description: 'Foggy',
-      image: 'http://openweathermap.org/img/wn/50n@2x.png',
-    },
-  },
-  48: {
-    day: {
-      description: 'Rime Fog',
-      image: 'http://openweathermap.org/img/wn/50d@2x.png',
-    },
-    night: {
-      description: 'Rime Fog',
-      image: 'http://openweathermap.org/img/wn/50n@2x.png',
-    },
-  },
-  51: {
-    day: {
-      description: 'Light Drizzle',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Light Drizzle',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  53: {
-    day: {
-      description: 'Drizzle',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Drizzle',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  55: {
-    day: {
-      description: 'Heavy Drizzle',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Heavy Drizzle',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  56: {
-    day: {
-      description: 'Light Freezing Drizzle',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Light Freezing Drizzle',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  57: {
-    day: {
-      description: 'Freezing Drizzle',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Freezing Drizzle',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  61: {
-    day: {
-      description: 'Light Rain',
-      image: 'http://openweathermap.org/img/wn/10d@2x.png',
-    },
-    night: {
-      description: 'Light Rain',
-      image: 'http://openweathermap.org/img/wn/10n@2x.png',
-    },
-  },
-  63: {
-    day: {
-      description: 'Rain',
-      image: 'http://openweathermap.org/img/wn/10d@2x.png',
-    },
-    night: {
-      description: 'Rain',
-      image: 'http://openweathermap.org/img/wn/10n@2x.png',
-    },
-  },
-  65: {
-    day: {
-      description: 'Heavy Rain',
-      image: 'http://openweathermap.org/img/wn/10d@2x.png',
-    },
-    night: {
-      description: 'Heavy Rain',
-      image: 'http://openweathermap.org/img/wn/10n@2x.png',
-    },
-  },
-  66: {
-    day: {
-      description: 'Light Freezing Rain',
-      image: 'http://openweathermap.org/img/wn/10d@2x.png',
-    },
-    night: {
-      description: 'Light Freezing Rain',
-      image: 'http://openweathermap.org/img/wn/10n@2x.png',
-    },
-  },
-  67: {
-    day: {
-      description: 'Freezing Rain',
-      image: 'http://openweathermap.org/img/wn/10d@2x.png',
-    },
-    night: {
-      description: 'Freezing Rain',
-      image: 'http://openweathermap.org/img/wn/10n@2x.png',
-    },
-  },
-  71: {
-    day: {
-      description: 'Light Snow',
-      image: 'http://openweathermap.org/img/wn/13d@2x.png',
-    },
-    night: {
-      description: 'Light Snow',
-      image: 'http://openweathermap.org/img/wn/13n@2x.png',
-    },
-  },
-  73: {
-    day: {
-      description: 'Snow',
-      image: 'http://openweathermap.org/img/wn/13d@2x.png',
-    },
-    night: {
-      description: 'Snow',
-      image: 'http://openweathermap.org/img/wn/13n@2x.png',
-    },
-  },
-  75: {
-    day: {
-      description: 'Heavy Snow',
-      image: 'http://openweathermap.org/img/wn/13d@2x.png',
-    },
-    night: {
-      description: 'Heavy Snow',
-      image: 'http://openweathermap.org/img/wn/13n@2x.png',
-    },
-  },
-  77: {
-    day: {
-      description: 'Snow Grains',
-      image: 'http://openweathermap.org/img/wn/13d@2x.png',
-    },
-    night: {
-      description: 'Snow Grains',
-      image: 'http://openweathermap.org/img/wn/13n@2x.png',
-    },
-  },
-  80: {
-    day: {
-      description: 'Light Showers',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Light Showers',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  81: {
-    day: {
-      description: 'Showers',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Showers',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  82: {
-    day: {
-      description: 'Heavy Showers',
-      image: 'http://openweathermap.org/img/wn/09d@2x.png',
-    },
-    night: {
-      description: 'Heavy Showers',
-      image: 'http://openweathermap.org/img/wn/09n@2x.png',
-    },
-  },
-  85: {
-    day: {
-      description: 'Light Snow Showers',
-      image: 'http://openweathermap.org/img/wn/13d@2x.png',
-    },
-    night: {
-      description: 'Light Snow Showers',
-      image: 'http://openweathermap.org/img/wn/13n@2x.png',
-    },
-  },
-  86: {
-    day: {
-      description: 'Snow Showers',
-      image: 'http://openweathermap.org/img/wn/13d@2x.png',
-    },
-    night: {
-      description: 'Snow Showers',
-      image: 'http://openweathermap.org/img/wn/13n@2x.png',
-    },
-  },
-  95: {
-    day: {
-      description: 'Thunderstorm',
-      image: 'http://openweathermap.org/img/wn/11d@2x.png',
-    },
-    night: {
-      description: 'Thunderstorm',
-      image: 'http://openweathermap.org/img/wn/11n@2x.png',
-    },
-  },
-  96: {
-    day: {
-      description: 'Light Thunderstorms With Hail',
-      image: 'http://openweathermap.org/img/wn/11d@2x.png',
-    },
-    night: {
-      description: 'Light Thunderstorms With Hail',
-      image: 'http://openweathermap.org/img/wn/11n@2x.png',
-    },
-  },
-  99: {
-    day: {
-      description: 'Thunderstorm With Hail',
-      image: 'http://openweathermap.org/img/wn/11d@2x.png',
-    },
-    night: {
-      description: 'Thunderstorm With Hail',
-      image: 'http://openweathermap.org/img/wn/11n@2x.png',
-    },
-  },
+const weatherCodeDesc = {
+  0: 'Clear Sky',
+  1: 'Mainly Clear',
+  2: 'Partly Cloudy',
+  3: 'Overcast',
+  45: 'Fog',
+  48: 'Depositing Rime Fog',
+  51: 'Light Drizzle',
+  53: 'Moderate Drizzle',
+  55: 'Dense Drizzle',
+  56: 'Light Freezing Drizzle',
+  57: 'Dense Freezing Drizzle',
+  61: 'Light Rain',
+  63: 'Rain',
+  65: 'Heavy Rain',
+  66: 'Light Freezing Rain',
+  67: 'Heavy Freezing Rain',
+  71: 'Light Snow',
+  73: 'Snow',
+  75: 'Heavy Snow',
+  77: 'Snow Grains',
+  80: 'Light Showers',
+  81: 'Showers',
+  82: 'Heavy Showers',
+  85: 'Light Snow Showers',
+  86: 'Snow Showers',
+  95: 'Thunderstorm',
+  96: 'Light Thunderstorms With Slight Hail',
+  99: 'Thunderstorm With Heavy Hail',
 };
+
+export const weatherCodeImg = (weatherCode) => {
+  let weatherCodeImg;
+  switch (weatherCode) {
+    case 0:
+    case 1:
+      weatherCodeImg = `<i style='color: yellow' class="fa-regular fa-sun fa-2xl"></i>`;
+      break;
+    case 2:
+      weatherCodeImg = `<i style='color: orange' class="fa-solid fa-cloud-sun fa-2xl"></i>`;
+      break;
+    case 3:
+      weatherCodeImg = `<i style='color: lightgray' class="fa-solid fa-cloud fa-2xl"></i>`;
+      break;
+    case 45:
+    case 48:
+      weatherCodeImg = `'<i style='color: darkgoldenrod' class="fa-solid fa-smog fa-2xl"></i>'`;
+      break;
+    case 51:
+    case 53:
+    case 80:
+    case 81:
+    case 82:
+      weatherCodeImg = `<i style='color: darkorange' class="fa-solid fa-cloud-sun-rain fa-2xl"></i>`;
+      break;
+    case 55:
+    case 61:
+      weatherCodeImg = '<i style="color: gray" class="fa-solid fa-cloud-rain fa-2xl"></i>';
+      break;
+    case 56:
+    case 57:
+    case 63:
+    case 65:
+      weatherCodeImg = '<i style="color: darkblue" class="fa-solid fa-cloud-showers-heavy fa-2xl"></i>';
+      break;
+    case 66:
+    case 67:
+    case 71:
+    case 73:
+    case 75:
+    case 77:
+    case 85:
+    case 86:
+      weatherCodeImg = '<i style="color: white" class="fa-regular fa-snowflake fa-2xl"></i>';
+      break;
+    case 95:
+    case 96:
+    case 99:
+      weatherCodeImg = '<i style="color: green" class="fa-solid fa-cloud-bolt fa-2xl"></i>';
+  }
+  return weatherCodeImg;
+};
+
+// Programatically populates an object with the description image from switch statement
+let weatherCodes = {};
+Object.entries(weatherCodeDesc).forEach(([code, value], index) => {
+  weatherCodes[code] = {
+    description: value,
+    image: weatherCodeImg(parseInt(code)),
+  };
+});
+
+export default weatherCodes;

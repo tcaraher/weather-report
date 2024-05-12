@@ -3,11 +3,10 @@
 // Needs to be key value format with daily and or hourly key, then the title of each field to be displayed along with its relevant field name
 export const weatherCard = (requestedDataFields, fieldIndex, cardTitle, Link) => {
   const city = Object.keys(requestedDataFields)[0];
-  let weatherCodeDataQuery;
+
+
   let dataType;
   let cityNameForData;
-  let query;
-
   // if data query needs to be hourly or daily data (this card only supports one type)
   if (requestedDataFields[city].daily) {
     dataType = 'daily';
@@ -15,8 +14,8 @@ export const weatherCard = (requestedDataFields, fieldIndex, cardTitle, Link) =>
     dataType = 'hourly';
   }
   cityNameForData = city + `_${dataType}`;
-  query = weatherReport.weatherData[cityNameForData][dataType];
-  weatherCodeDataQuery = weatherReport.weatherCodes[query.weather_code[fieldIndex]].day;
+  const query = weatherReport.weatherData[cityNameForData][dataType];
+  const weatherCodeQuery = weatherReport.weatherCodes[query.weather_code[fieldIndex]];
 
   const drawDataFields = (requestedDataFields) => {
     let dataElement = '';
@@ -39,12 +38,13 @@ export const weatherCard = (requestedDataFields, fieldIndex, cardTitle, Link) =>
          ${Link ? `<a class="button mt-4" href=${Link}>See More!</a>` : ''}
          <div class="card-image">
            <!--        Gets weather code image from weather code object-->
-           <img src="${requestedDataFields[city].daily ? weatherCodeDataQuery.image : weatherCodeDataQuery.image}" />
-         </div>
+        <div class='m-5' style='font-size: 1.5rem'> 
+        ${weatherCodeQuery.image}
+        </div>         </div>
          <article class="card-content">
            <p class="content">
              <!--        Gets weather code description from weather code object-->
-             ${requestedDataFields[city].daily ? weatherCodeDataQuery.description : weatherCodeDataQuery.description}
+             ${weatherCodeQuery.description}
            </p>
            ${drawDataFields(requestedDataFields)}
          </article>

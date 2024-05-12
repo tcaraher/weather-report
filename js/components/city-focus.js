@@ -56,7 +56,7 @@ export const cityFocus = () => {
 
   const dailyData = weatherReport.weatherData[city + '_daily'];
   const weatherCodeQuery = weatherReport.weatherCodes[weatherReport.weatherData[city + `_daily`].daily.weather_code[0]];
-
+  console.log(weatherReport.weatherCodes)
   // The data requested for the weather card component
   const rightNowData = {
     [city]: {
@@ -75,10 +75,11 @@ export const cityFocus = () => {
       </h1>
       <div class="column has-text-justified">
         <figure class="image is-128x128 container">
-          <img alt='${weatherCodeQuery.day.description}' src="${weatherCodeQuery.day.image}" />
-        </figure>
+        <div class='m-5 has-text-centered' style='font-size: 2rem'> 
+        ${weatherCodeQuery.image}
+        </div>         </figure>
         <p class="has-text-centered is-size-3">
-          ${weatherCodeQuery.day.description}
+          ${weatherCodeQuery.description}
         </p>
       </div>
       <div class="column has-text-justified">
