@@ -3,6 +3,8 @@
 This projects purpose is to utilise provided weather data from open-meteo.com to generate a pleasing UI for viewing
 weather forecasts and reports.
 
+[Deployed Site](https://weather-report-lime.vercel.app)
+
 ## Technologies
 
 - Eleventy static site generator and nunjucks templating
