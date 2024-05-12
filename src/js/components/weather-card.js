@@ -31,7 +31,7 @@ export const weatherCard = (requestedDataFields, fieldIndex, cardTitle, Link) =>
        <section class="card has-text-centered">
          <header class="card-header">
            <p class="card-header-title is-size-4 is-centered">
-             ${weatherReport.utilities.cityStripper(cardTitle)}
+             ${weatherReport.utilities.uiFriendlyString(cardTitle)}
            </p>
          </header>
          ${Link ? `<a class="button mt-4" href=${Link}>See More!</a>` : ''}

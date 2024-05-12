@@ -34,10 +34,10 @@ export const weatherCodeImg = (weatherCode) => {
   switch (weatherCode) {
     case 0:
     case 1:
-      weatherCodeImg = `<i style='color: yellow' class="fa-regular fa-sun fa-2xl"></i>`;
+      weatherCodeImg = `<i style='color: orange' class="fa-regular fa-sun fa-2xl"></i>`;
       break;
     case 2:
-      weatherCodeImg = `<i style='color: orange' class="fa-solid fa-cloud-sun fa-2xl"></i>`;
+      weatherCodeImg = `<i style='color: lightsalmon' class="fa-solid fa-cloud-sun fa-2xl"></i>`;
       break;
     case 3:
       weatherCodeImg = `<i style='color: lightgray' class="fa-solid fa-cloud fa-2xl"></i>`;

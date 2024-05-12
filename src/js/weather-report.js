@@ -5,7 +5,7 @@ import { settingsPicker, settingsPickerEventListener } from '/js/components/sett
 import { weatherCard } from '/js/components/weather-card.js';
 import weatherCodes from '/js/data/weather-codes.js';
 import { weatherData } from '/js/data/weather_data.js';
-import { cityStripper, getFaveObjFromStorage, getValue, handleDropdowns, listCities } from '/js/utils/utilities.js';
+import { uiFriendlyString, getFaveObjFromStorage, getValue, handleDropdowns, listCities } from '/js/utils/utilities.js';
 import { daysOfTheWeek } from '/js/constants.js';
 import { settingsObj } from '/js/settings-obj.js';
 
@@ -22,7 +22,7 @@ window.weatherReport = {
   },
   utilities: {
     listCities,
-    cityStripper,
+    uiFriendlyString,
     handleDropdowns,
     getFaveObjFromStorage,
     getValue,

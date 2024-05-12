@@ -101,7 +101,7 @@ const getAndSetNearestCity = async () => {
   // Elements and setIt event listeners
   const gotLocationMessage = document.getElementById('got-location-message');
   const setItButton = document.getElementById('set-found-location-button');
-  gotLocationMessage.innerHTML = `You're nearest city is: ${weatherReport.utilities.cityStripper(closestCity)}!`;
+  gotLocationMessage.innerHTML = `You're nearest city is: ${weatherReport.utilities.uiFriendlyString(closestCity)}!`;
   gotLocationMessage.style.visibility = 'visible';
   setItButton.innerHTML = 'Set It As Default!';
   setItButton.style.visibility = 'visible';

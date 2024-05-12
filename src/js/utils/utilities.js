@@ -12,7 +12,7 @@ export const listCities = () => {
 };
 
 // Returns a user friendly version of the string from the weather data
-export const cityStripper = (originalCityNameFromData) => {
+export const uiFriendlyString = (originalCityNameFromData) => {
   const noUnderscores = originalCityNameFromData.replace('_', ' ');
   // Takes the no underscore version, splits each city at a space, puts each word into a map, and for each first characher of each word makes it uppercase, and joins the word back to the first Char from the 1 index, and adds a space.
   return noUnderscores

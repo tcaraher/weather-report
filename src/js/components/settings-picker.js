@@ -10,7 +10,7 @@ export const settingsPicker = (settingObj) => {
   if (localStorage.getItem(localStorageKey) === null) {
     settingsValueFromStorage = title;
   } else {
-    settingsValueFromStorage = weatherReport.utilities.cityStripper(localStorage.getItem(localStorageKey));
+    settingsValueFromStorage = weatherReport.utilities.uiFriendlyString(localStorage.getItem(localStorageKey));
   }
 
   // displays each selection item based on array passed in to the settings-obj.js object
@@ -19,7 +19,7 @@ export const settingsPicker = (settingObj) => {
     settingsOptions.forEach((settingItem) => {
       elements += `
         <a id='selection-${localStorageKey}-${settingItem}' class='dropdown-item'>
-            ${weatherReport.utilities.cityStripper(settingItem)}
+            ${weatherReport.utilities.uiFriendlyString(settingItem)}
         </a>
       `;
     });
@@ -59,7 +59,7 @@ export const settingsPickerEventListener = (returnURL, localStorageKey) => {
       localStorage.setItem(localStorageKey, settingValue);
 
       // Displays the friendly version of the city if selected in the dropdown
-      document.querySelector(`#selected-setting-${localStorageKey}`).innerHTML = weatherReport.utilities.cityStripper(settingValue);
+      document.querySelector(`#selected-setting-${localStorageKey}`).innerHTML = weatherReport.utilities.uiFriendlyString(settingValue);
 
       // sends user to the new default city if true is passed into function call. Used on home screen/city focus page to refresh page after default city update, not on settingsObj page
       if (returnURL) {

@@ -67,10 +67,9 @@ export const cityFocus = () => {
   };
 
   return `
-    ${weatherReport.components.settingsPicker(weatherReport.settingsObj.homeCity)}
     <section class="columns mx-6 is-vcentered">
       <h1 class="column title is-size-1 has-text-centered">
-        ${weatherReport.utilities.cityStripper(city).toUpperCase()}
+        ${weatherReport.utilities.uiFriendlyString(city).toUpperCase()}
       </h1>
       <div class="column has-text-justified">
         <figure class="image is-128x128 container">

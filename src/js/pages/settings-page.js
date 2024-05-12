@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <section class='card-content'>
             <label class='content checkbox'>
             <input class='mx-4' type='checkbox' id='fave-${cityQuery}'/>
-            ${weatherReport.utilities.cityStripper(cityQuery)}
+            ${weatherReport.utilities.uiFriendlyString(cityQuery)}
             </label>
             </section>
       `;
