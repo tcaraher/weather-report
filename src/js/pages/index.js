@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   cityFocus.innerHTML += weatherReport.components.cityFocus();
 
   // Event listeners
-  weatherReport.components.settingsPickerEventListener(true, weatherReport.settings.homeCity.localStorageKey);
+  weatherReport.components.settingsPickerEventListener(true, weatherReport.settingsObj.homeCity.localStorageKey);
   weatherReport.utilities.handleDropdowns();
 
   // Logic for nearest city

@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return cityListItem;
   };
 
-  // // iterates over each setting in the settings.js object and creates a dropdown with settingsPicker
+  // // iterates over each setting in the settings-obj.js object and creates a dropdown with settingsPicker
   const getSettings = () => {
     let settings = '';
-    Object.keys(weatherReport.settings).forEach((setting) => {
-      settings += weatherReport.components.settingsPicker(weatherReport.settings[setting]);
+    Object.keys(weatherReport.settingsObj).forEach((setting) => {
+      settings += weatherReport.components.settingsPicker(weatherReport.settingsObj[setting]);
     });
     return settings;
   };
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <header class='card-header'>
             <p class='card-header-title is-size-4 is-centered'>Default Settings</p>
           </header>
-          <button id='reset-settings' class='ml-5 my-3 button'>Reset All Settings</button>
+          <button id='reset-settingsObj' class='ml-5 my-3 button'>Reset All Settings</button>
           ${getSettings()}
           <div class='ml-5'>
             <p class='is-size-5'>Get and Set Home City With User Location:</p>
@@ -59,9 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
   main.innerHTML += Settings();
 
   // Reset Settings
-  document.getElementById('reset-settings').addEventListener('click', () => {
-    Object.keys(weatherReport.settings).forEach((item) => {
-      localStorage.removeItem(weatherReport.settings[item].localStorageKey);
+  document.getElementById('reset-settingsObj').addEventListener('click', () => {
+    Object.keys(weatherReport.settingsObj).forEach((item) => {
+      localStorage.removeItem(weatherReport.settingsObj[item].localStorageKey);
       location.reload();
     });
   });
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
     location.reload();
   });
 
-  // Calls dom events for returned html of each settings picker component
-  Object.keys(weatherReport.settings).forEach((setting) => weatherReport.components.settingsPickerEventListener(false, weatherReport.settings[setting].localStorageKey));
+  // Calls dom events for returned html of each settingsObj picker component
+  Object.keys(weatherReport.settingsObj).forEach((setting) => weatherReport.components.settingsPickerEventListener(false, weatherReport.settingsObj[setting].localStorageKey));
 
   weatherReport.utilities.handleDropdowns();
 

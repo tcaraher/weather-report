@@ -38,10 +38,10 @@ export const cityFocus = () => {
 
   // sets a value for homeCity if there is no key stored in local storage yet
   let homeCity;
-  if (localStorage.getItem(weatherReport.settings.homeCity.localStorageKey) === null) {
+  if (localStorage.getItem(weatherReport.settingsObj.homeCity.localStorageKey) === null) {
     homeCity = 'waterford';
   } else {
-    homeCity = localStorage.getItem(weatherReport.settings.homeCity.localStorageKey);
+    homeCity = localStorage.getItem(weatherReport.settingsObj.homeCity.localStorageKey);
   }
 
   // Sets up url params
@@ -56,7 +56,6 @@ export const cityFocus = () => {
 
   const dailyData = weatherReport.weatherData[city + '_daily'];
   const weatherCodeQuery = weatherReport.weatherCodes[weatherReport.weatherData[city + `_daily`].daily.weather_code[0]];
-  console.log(weatherReport.weatherCodes)
   // The data requested for the weather card component
   const rightNowData = {
     [city]: {
@@ -68,7 +67,7 @@ export const cityFocus = () => {
   };
 
   return `
-    ${weatherReport.components.settingsPicker(weatherReport.settings.homeCity)}
+    ${weatherReport.components.settingsPicker(weatherReport.settingsObj.homeCity)}
     <section class="columns mx-6 is-vcentered">
       <h1 class="column title is-size-1 has-text-centered">
         ${weatherReport.utilities.cityStripper(city).toUpperCase()}

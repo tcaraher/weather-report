@@ -15,12 +15,12 @@ This projects purpose is to utilise provided weather data from open-meteo.com to
 ## Features
 
 
-- A default “home” city on index.html with a city focus view, set with user settings or with the [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API).
+- A default “home” city on index.html with a city focus view, set with user settingsObj or with the [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API).
 - A Bulma modal is presented on load of the home page when there is no predefined local storage key set for the default city. It displays a welcome message and an option to select their home city, or request the nearest city from their location.
 - A dashboard of all available cities’ weather summaries for the day, all clickable to zoom into a more detailed view.
 - From the city focus view, loaded via URLParams, a daily summary is presented for the week, of which each card is clickable, sending the user to an hourly forecast for that day(also displayed dynamically with url parameters)
-- A favourites section of the dashboard, set on the settings page.
-- Additional user settings include temperature and speed unit preferences. With an easy developer experience to add new settings options.
+- A favourites section of the dashboard, set on the settingsObj page.
+- Additional user settingsObj include temperature and speed unit preferences. With an easy developer experience to add new settingsObj options.
 - Very little repeated code with clear commenting on how each component functions
 - Option add extra weather data cities or update the data and it will read everything dynamically. No “hard coding” of any data.
 
@@ -33,18 +33,18 @@ This projects purpose is to utilise provided weather data from open-meteo.com to
 
 ## Usage
 
-- This application accepts weather data from [open-meteo.com](open-meteo.com). Just paste your data in to weather-data.js, or load it in from their API, and see the cities and days requested populate.
+- This application accepts weather data from [open-meteo.com](https://open-meteo.com). Just paste your data in to weather-data.js, or load it in from their API, and see the cities and days requested populate.
 
 - All instances of the component weatherCard takes an object with the requested data. The developer can add or remove available items to
 
-- Select favourites from the available cities on the settings page. The available list will populate based on the cities supplied in the data.
+- Select favourites from the available cities on the settingsObj page. The available list will populate based on the cities supplied in the data.
 
 - Set the home/default city displayed at index.html with either a dropdown or user location. Catches error if location access is denied or fails. The user would need to re-enable their location permissions in their browser should they choose deny.
 
-- Button to clear all settings or favourites from the settings page. This will also re-enable the welcome modal on index.
+- Button to clear all settingsObj or favourites from the settingsObj page. This will also re-enable the welcome modal on index.
 
-- Select wind speed or temperature preferences from the settings page.
-    - To add extra settings, add a new settings option to the settings.js object. It will populate in the relevant section on the settings page, and create the storage key and value. The logic is then up to you.
+- Select wind speed or temperature preferences from the settingsObj page.
+    - To add extra settingsObj, add a new settingsObj option to the settings-obj.js object. It will populate in the relevant section on the settingsObj page, and create the storage key and value. The logic is then up to you.
 
 
 # Acknowledgments

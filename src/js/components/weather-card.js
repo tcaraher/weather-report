@@ -4,7 +4,6 @@
 export const weatherCard = (requestedDataFields, fieldIndex, cardTitle, Link) => {
   const city = Object.keys(requestedDataFields)[0];
 
-
   let dataType;
   let cityNameForData;
   // if data query needs to be hourly or daily data (this card only supports one type)
@@ -38,9 +37,10 @@ export const weatherCard = (requestedDataFields, fieldIndex, cardTitle, Link) =>
          ${Link ? `<a class="button mt-4" href=${Link}>See More!</a>` : ''}
          <div class="card-image">
            <!--        Gets weather code image from weather code object-->
-        <div class='m-5' style='font-size: 1.5rem'> 
-        ${weatherCodeQuery.image}
-        </div>         </div>
+           <div class='m-5' style='font-size: 1.5rem'>
+             ${weatherCodeQuery.image}
+           </div>
+         </div>
          <article class="card-content">
            <p class="content">
              <!--        Gets weather code description from weather code object-->

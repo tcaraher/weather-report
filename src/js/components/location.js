@@ -12,7 +12,6 @@ export const displayLocationUI = () => {
 
 // async function to get and set the nearest city. Does not need to be added to namespace as there is effectively an 'init' function following this available
 const getAndSetNearestCity = async () => {
-
   // ----- Defining necessary functions ----
 
   // This function was brought in from https://www.geodatasource.com/developers/javascript. I would not have been able to write this, although I think I get the gist.
@@ -108,14 +107,13 @@ const getAndSetNearestCity = async () => {
   setItButton.style.visibility = 'visible';
 
   setItButton.addEventListener('click', () => {
-    localStorage.setItem(weatherReport.settings.homeCity.localStorageKey, closestCity);
+    localStorage.setItem(weatherReport.settingsObj.homeCity.localStorageKey, closestCity);
     location.reload();
   });
 };
 
 // The init function for the logic essentially. Get Location button and run functions
 export const runGetAndSetNearestCity = () => {
-
   const getLocationButton = document.getElementById('location-button');
   getLocationButton.addEventListener('click', () => {
     getAndSetNearestCity();

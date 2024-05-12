@@ -4,10 +4,10 @@ import { locationModal, locationModalEvents } from '/js/components/location-moda
 import { settingsPicker, settingsPickerEventListener } from '/js/components/settings-picker.js';
 import { weatherCard } from '/js/components/weather-card.js';
 import weatherCodes from '/js/data/weather-codes.js';
-import {weatherData} from '/js/data/weather_data.js';
+import { weatherData } from '/js/data/weather_data.js';
 import { cityStripper, getFaveObjFromStorage, getValue, handleDropdowns, listCities } from '/js/utils/utilities.js';
 import { daysOfTheWeek } from './constants.js';
-import { settings } from './settings.js';
+import { settingsObj } from './settings-obj.js';
 
 window.weatherReport = {
   components: {
@@ -25,12 +25,12 @@ window.weatherReport = {
     cityStripper,
     handleDropdowns,
     getFaveObjFromStorage,
-    getValue
+    getValue,
   },
   constants: {
     daysOfTheWeek,
   },
-  settings,
+  settingsObj,
   weatherData,
-  weatherCodes
+  weatherCodes,
 };

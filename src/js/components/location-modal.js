@@ -10,7 +10,7 @@ export const locationModal = () => {
         </header>
         <section class="modal-card-body">
           <p class='is-size-5 mb-5'>Select your default city:</p>
-          ${weatherReport.components.settingsPicker(weatherReport.settings.homeCity)}
+          ${weatherReport.components.settingsPicker(weatherReport.settingsObj.homeCity)}
           <hr class='mt-5' />
           <p class='is-size-5 pt-4'>Or get your nearest city's weather data via your location:</p>
           ${weatherReport.components.displayLocationUI()}
@@ -21,16 +21,15 @@ export const locationModal = () => {
         </section>
       </div>
     </div>
-    </div>
 `;
 };
 
 // Event listeners and logic for modal
 export const locationModalEvents = () => {
-  const modalElement = document.querySelector('.modal')
+  const modalElement = document.querySelector('.modal');
 
   // If there is no stored default city, show the location modal on page load
-  if (localStorage.getItem(weatherReport.settings.homeCity.localStorageKey) === null) {
+  if (localStorage.getItem(weatherReport.settingsObj.homeCity.localStorageKey) === null) {
     window.addEventListener('load', () => {
       modalElement.classList.toggle('is-active');
     });

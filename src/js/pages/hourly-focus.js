@@ -25,17 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // sets the day to query in the data to the index of the requested day from the new week array.
     const dayToQuery = newDaysOfTheWeek.indexOf(requestedDayFromURL);
-    const requestedDayIndex = weatherReport.constants.daysOfTheWeek.indexOf(requestedDayFromURL)
+    const requestedDayIndex = weatherReport.constants.daysOfTheWeek.indexOf(requestedDayFromURL);
 
     // initialized the card container string for html
     let cardContainer = '';
 
     let getHourlyIndexFromData;
-    let hour
+    let hour;
     if (currentDayIndex === requestedDayIndex) {
-      hour = currentHour
+      hour = currentHour;
     } else {
-      hour = 0
+      hour = 0;
     }
     while (hour < 24) {
       //Had an issue with the first numbers 0-9 being formatted with two digits. I wanted a nice way to fix this -  https://stackoverflow.com/questions/8043026/how-to-format-numbers-by-prepending-0-to-single-digit-numbers
@@ -66,14 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentDay = now.day();
 
     // sets the city and day to default unless has a parameter set.
-    const city = urlParams.has('city') ? urlParams.get('city') : localStorage.getItem(weatherReport.settings.homeCity.localStorageKey);
+    const city = urlParams.has('city') ? urlParams.get('city') : localStorage.getItem(weatherReport.settingsObj.homeCity.localStorageKey);
     const dayOfTheWeekFromURL = urlParams.has('day') ? urlParams.get('day') : weatherReport.constants.daysOfTheWeek[currentDay];
-    const dayOfTheWeekIndex = weatherReport.constants.daysOfTheWeek.indexOf(dayOfTheWeekFromURL)
-
+    const dayOfTheWeekIndex = weatherReport.constants.daysOfTheWeek.indexOf(dayOfTheWeekFromURL);
 
     return `
     <h1 class="column title is-size-1 has-text-centered">
-      ${weatherReport.utilities.cityStripper(city)} | ${dayOfTheWeekIndex === currentDay ? "TODAY" :
+      ${weatherReport.utilities.cityStripper(city)} | ${dayOfTheWeekIndex === currentDay ? 'TODAY' :
       dayOfTheWeekFromURL.toUpperCase()}
     </h1>
     <h2 class=" is-size-1 has-text-centered">

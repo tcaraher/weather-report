@@ -1,4 +1,4 @@
-// Settings picker component for each setting. Takes in the setting object defined in settings.js,
+// Settings picker component for each setting. Takes in the setting object defined in settingsObj.js,
 // which can take any key and options - the logic would need to be implemented though
 export const settingsPicker = (settingObj) => {
   const localStorageKey = settingObj.localStorageKey;
@@ -13,7 +13,7 @@ export const settingsPicker = (settingObj) => {
     settingsValueFromStorage = weatherReport.utilities.cityStripper(localStorage.getItem(localStorageKey));
   }
 
-  // displays each selection item based on array passed in to the settings.js object
+  // displays each selection item based on array passed in to the settings-obj.js object
   const displaySelectionItems = () => {
     let elements = '';
     settingsOptions.forEach((settingItem) => {
@@ -49,14 +49,11 @@ export const settingsPicker = (settingObj) => {
     `;
 };
 
-
-// Events and local storage logic for component. Checks if it needs to be able add url params - this is used in the dropdown in city focus, not in the settings panel. Also needs the storage key
+// Events and local storage logic for component. Checks if it needs to be able add url params - this is used in the dropdown in city focus, not in the settingsObj panel. Also needs the storage key
 export const settingsPickerEventListener = (returnURL, localStorageKey) => {
-
   // Finds all elements with an id that includes the key and adds a click listener.
   document.querySelectorAll(`[id^=selection-${localStorageKey}]`).forEach((selection) => {
     selection.addEventListener('click', () => {
-
       // gets the value to be passed in to local storage
       const settingValue = selection.id.replace(`selection-${localStorageKey}-`, '');
       localStorage.setItem(localStorageKey, settingValue);
@@ -64,11 +61,10 @@ export const settingsPickerEventListener = (returnURL, localStorageKey) => {
       // Displays the friendly version of the city if selected in the dropdown
       document.querySelector(`#selected-setting-${localStorageKey}`).innerHTML = weatherReport.utilities.cityStripper(settingValue);
 
-      // sends user to the new default city if true is passed into function call. Used on home screen/city focus page to refresh page after default city update, not on settings page
+      // sends user to the new default city if true is passed into function call. Used on home screen/city focus page to refresh page after default city update, not on settingsObj page
       if (returnURL) {
         document.getElementById(`selection-${localStorageKey}-${settingValue}`).setAttribute('href', `/city-focus/?city=${settingValue}`);
       }
     });
   });
 };
-

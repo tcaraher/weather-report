@@ -1,4 +1,4 @@
-export const settings = {
+export const settingsObj = {
   homeCity: {
     localStorageKey: 'default-city',
     titleUI: 'Select Home City',
